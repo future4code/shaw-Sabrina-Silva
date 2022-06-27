@@ -1,15 +1,8 @@
 import axios from "axios";
 import React from "react";
+import { BASE_URL } from "../../constants/BASE_URL";
+import { headers } from "../../constants/headers";
 import { ContainerCriaPlaylist, Input, ButtonCriar, ButtonDetalhesPlaylist } from "./styledCriarPlaylist"
-import styledComponents from "styled-components";
-
-
-
-const headers = {
-  headers: {
-    Authorization: "sabrina-pires-shaw",
-  },
-};
 
 export default class TelaCriaPlaylist extends React.Component {
   state = {
@@ -27,15 +20,10 @@ export default class TelaCriaPlaylist extends React.Component {
       name: this.state.inputPlaylist,
     };
 
-    const url =
-      "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
-
     axios
-      .post(url, body, headers)
+      .post(`${BASE_URL}playlists`, body, headers)
       .then((res) => {
         alert("Playlist criada. Arrasooou gatah(oh)!!!");
-
-        //this.getAllPlaylist()
 
         this.setState({
           inputPlaylist: "",
@@ -60,11 +48,11 @@ export default class TelaCriaPlaylist extends React.Component {
         <div>
           <ButtonCriar onClick={this.postCreatePlaylist}>Criar</ButtonCriar>
         </div>
-        <div>
+        {/* <div>
           <ButtonDetalhesPlaylist onClick={this.props.irParaPlaylist}>
-            Detalhes Playlist Criadas
+            Playlists
           </ButtonDetalhesPlaylist>
-        </div>
+        </div> */}
       </ContainerCriaPlaylist>
     );
   }

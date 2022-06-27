@@ -1,4 +1,5 @@
 import React from "react";
+import {Header} from "./Componentes/Header/Header"
 import TelaAdicionaMusica from "./Componentes/AdicionaMusica/TelaAdicionaMusica";
 import TelaCriaPlaylist from "./Componentes/CriarPlaylist/TelaCriaPlaylist";
 import TelaDetalhesPlaylist from "./Componentes/DetalhesPlaylist/TelaDetalhesPlaylist";
@@ -13,7 +14,8 @@ export default class App extends React.Component {
       case "criar playlist":
         return <TelaCriaPlaylist irParaPlaylist={this.irParaPlaylist} />;
       case "playlist":
-        return <TelaDetalhesPlaylist irParaMusicaPlaylist={this.irParaMusicaPlaylist}/>;
+        return <TelaDetalhesPlaylist irParaMusicaPlaylist={this.irParaMusicaPlaylist}
+        irParaCriarPlaylist={this.irParaCriarPlaylist}/>;
         case "adicionar musica":
         return <TelaAdicionaMusica  irParaCriarPlaylist={this.irParaCriarPlaylist}/>;
       default:
@@ -36,6 +38,13 @@ export default class App extends React.Component {
 
   render() {
 
-    return <div>{this.escolheTela()}</div>;
+    return <div>
+      <Header
+      irParaPlaylist = {this.irParaPlaylist}
+      // irParaMusicaPlaylist = {this.irParaMusicaPlaylist}
+      // irParaCriarPlaylist = {this.irParaCriarPlaylist}
+      />
+      {this.escolheTela()}
+      </div>;
   }
 }

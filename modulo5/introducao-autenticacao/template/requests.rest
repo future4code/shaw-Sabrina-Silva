@@ -1,21 +1,26 @@
-# @name signup
-
 POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
  
-   "email": "osbourne@oscorp.com" ,
-   "password": "ihatepeter"
+   "email": "sabrina@sabrina.com" ,
+   "password": "123456"
 }
 
 ###
 
-@id = {{signup.response.body.newUser.id}}
-
-PUT http://localhost:3003/user/edit/{{id}}
+POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "name": "Harry Osbourne" 
+ 
+   "email": "sabrina@sabrina.com" ,
+   "password": "123456"
 }
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5M2Y3MjNhLTFmYTEtNDcyNy1hNDYxLWE1YWVjYjBiODY4NyIsImlhdCI6MTY1NjM2MTQwM30.GdtntMZBuiwHu_N7UqTujsB0Ix9G1D0eTUbNaMw4fhw
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}}

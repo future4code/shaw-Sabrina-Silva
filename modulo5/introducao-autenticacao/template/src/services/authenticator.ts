@@ -10,8 +10,11 @@ export class Authenticator {
       return token
   }
 
-  // public getData = (token: string): AuthenticationData => {
-  //     const data = jwt.verify(token, process.env.JWT_KEY as string) as AuthenticationData
-  //     return data
-  // }
+      public getData = (token: string): AuthenticationData => {
+      const data = jwt.verify(token, process.env.JWT_KEY as string) as AuthenticationData
+      const result = {
+        id: data.id,
+      };
+      return result;
+  }
 }

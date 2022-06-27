@@ -17,8 +17,18 @@ export class UserDatabase extends BaseDatabase {
             .update(columnsUpdate)
             .where({ id })
     }
+
+    public getUserById = async (id: string) => {
+        const [result] = await BaseDatabase.connection('User')
+            .select("*")
+            .where({ id })
+
+            return result
+    }
+    
     public getByEmail = async (email: string) => {
         const [result] = await BaseDatabase.connection('User')
+            .select("*")
             .where({ email })
         return result
     }

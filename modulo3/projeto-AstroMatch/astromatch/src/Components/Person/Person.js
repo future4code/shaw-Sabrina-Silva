@@ -33,7 +33,7 @@ export const Person = () => {
 
   const postChoosePerson = (id, boolean) => {
     const body = {
-      id: id,
+      id: profile.id,
       boolean: boolean,
     };
     axios
@@ -41,7 +41,8 @@ export const Person = () => {
         `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/sabrina-shaw/choose-person`,
         body
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         getProfile();
       })
       .catch((err) => {

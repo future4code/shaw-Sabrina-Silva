@@ -21,7 +21,7 @@ export default async function getUser( req: Request, res: Response): Promise<voi
         
         const userDB = new UserDatabase()
 
-        const user = await userDB.getUserById(authenticationData.id);
+        const user = await userDB.selectUserById(authenticationData.id);
         
         res.status(200).send({
             id: user.id,

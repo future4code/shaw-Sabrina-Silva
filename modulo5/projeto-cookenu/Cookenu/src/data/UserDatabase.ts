@@ -18,7 +18,7 @@ export class UserDatabase extends BaseDatabase {
             .where({ id })
     }
 
-    public getUserById = async (id: string) => {
+    public selectUserById = async (id: string) => {
         const [result] = await BaseDatabase.connection('user_cookenu')
             .select("*")
             .where({ id })

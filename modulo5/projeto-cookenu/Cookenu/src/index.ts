@@ -5,10 +5,20 @@ import { singup } from "./endpoints/singup"
 import { login } from "./endpoints/login"
 import getUser from "./endpoints/getUser"
 import getUserById from "./endpoints/getUserById"
+import { getRecipes } from "./endpoints/getRecipes"
+
+app.get('/user/profile', getUser)
+
+app.get('/user/profile/:id', getUserById)
+
+app.get('/recipe/:id', getRecipes)
 
 app.post('/user/signup', singup)
+
 app.post('/user/login', login)
-app.put('/user/edit/:id', editUser)
-app.get('/user/profile', getUser)
+
 app.post('/recipe/create', createRecipe)
-app.get('/user/profile/:id', getUserById)
+
+app.put('/user/edit/:id', editUser)
+
+

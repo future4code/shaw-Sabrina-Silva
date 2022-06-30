@@ -14,6 +14,11 @@ try{
         throw new Error("Preencha os campos.")
      }
 
+     if (email !== String(email) || name !== String(name)) {
+        res.statusCode = 422
+        throw new Error("Valores invalidos.")
+     }
+
      if (email.indexOf("@") === -1) {
         res.statusCode = 422
         throw new Error("Email invalido.")

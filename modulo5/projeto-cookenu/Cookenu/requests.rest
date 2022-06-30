@@ -2,10 +2,10 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Anitta",
-   "email": "vaimalandra@outlook.com" ,
+   "name": "Giovana",
+   "email": "giovana@hotmail.com" ,
    "password": "12345678",
-   "role": "NORMAL"
+   "role": "ADMIN"
 }
 
 ###
@@ -32,11 +32,16 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-   "title": "BOLINHO",
-   "description": "Em um liquidificador adicione os ovos, o chocolate em pó, a manteiga, a farinha de trigo, o açúcar e o leite, depois bata por 5 minutos.Adicione o fermento e misture com uma espátula delicadamente.Em uma forma untada, despeje a massa e asse em forno médio (180 ºC) preaquecido por cerca de 40 minutos. Não se esqueça de usar uma forma alta para essa receita: como leva duas colheres de fermento, ela cresce bastante! Outra solução pode ser colocar apenas uma colher de fermento e manter a sua receita em uma forma pequena."
+   "title": "",
+   "description": "Unte uma pedra de mármore ou uma assadeira com um pouco de óleo. Misture em uma panela o coco, o leite condensado e o açúcar. Leve ao fogo e misture bem, cozinhe misturando regularmente com uma colher de pau. Quando o doce começar a ser soltar do fundo da panela, retire do fogo e acrescente a manteiga. Bata bem com a colher de pau para que o doce açucare. Despeje sobre o mármore untado e deixe esfriar. Corte quadrados de 10 x 10 cm."
 }
 
 ###
 
 GET http://localhost:3003/user/profile/b7565e42-0cd3-4fbf-b915-fdffc85c511e
+Authorization: {{token}}
+
+###
+
+GET http://localhost:3003/recipe/144fd345-8ccf-40c2-8c78-4799e8004ea1
 Authorization: {{token}}

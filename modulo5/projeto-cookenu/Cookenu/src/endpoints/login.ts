@@ -34,6 +34,6 @@ export const login = async (req: Request, res: Response) => {
         res.status(200).send({token});
 
     } catch (error: any) {
-        res.send({ message: error.message })
+        res.send({ message: error.sqlMessage || error.message })
     }
 }

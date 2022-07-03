@@ -14,14 +14,14 @@ export default async function getUser( req: Request, res: Response): Promise<voi
         const authenticator = new Authenticator()
         const authenticationData = authenticator.getData(token)
 
-        // if(authenticationData.role !== "NORMAL"){
-        //     res.statusCode = 409
-        //     throw new Error('Não autorizado.')
-        // }
         
         const userDB = new UserDatabase()
-
         const user = await userDB.selectUserById(authenticationData.id);
+        
+        if(!user){
+            res.statusCode = 404
+            throw new Error("Usuário não encontrado")
+        }
         
         res.status(200).send({
             id: user.id,

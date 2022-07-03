@@ -31,12 +31,7 @@ export default async function createUser(req: Request,res: Response): Promise<vo
 
       res.end()
 
-   } catch (error) {
-
-      if (res.statusCode === 200) {
-         res.status(500).end()
-      }
-
-      res.end()
+   } catch (error:any) {
+      res.send({message: error.message})
    }
 }

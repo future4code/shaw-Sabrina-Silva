@@ -39,6 +39,7 @@ export default async function createRecipe(req: Request, res: Response): Promise
       const newRecipe: Recipe = { id, title, description, createDate, user_id }
 
       const recipeDB = new RecipesDataBase()
+      
       await recipeDB.create(newRecipe)
 
       res.status(201).send(newRecipe)

@@ -34,8 +34,8 @@ export default async function editRecipe(req: Request, res: Response): Promise<v
             throw new Error('Não autorizado.')
         }
 
-        const newRecipe:any= new RecipesDataBase()
-        const recipe:RecipeEdit = newRecipe.edit(id, title, description)
+        const newRecipe = new RecipesDataBase()
+        const recipe = await newRecipe.edit(id, title, description)
 
         console.log(recipe);
 

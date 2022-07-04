@@ -10,7 +10,7 @@ export class RecipesDataBase extends BaseDatabase {
 
         } catch (error: any) {
 
-            throw new Error("Erro inesperado no servidor")
+            throw new Error(error.sqlMessage || error.message)
         }
 
     }
@@ -37,20 +37,31 @@ export class RecipesDataBase extends BaseDatabase {
 
             return result
         } catch (error: any) {
-            throw new Error("Erro")
+            throw new Error(error.sqlMessage || error.message)
         }
     }
 
-    public edit = async (id: string, title: string, description: string): Promise<RecipeEdit> => {
+    public edit = async (id: string, title: string, description: string): Promise<void> => {
         try {
-            const [result] = await BaseDatabase.connection('recipes_cookenu')
+             await BaseDatabase.connection('recipes_cookenu')
                 .update(title, description)
                 .where({ id })
-            console.log(result);
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
+    public delete = async (id: string) => {
+        try {
+            const result = await BaseDatabase.connection()
+                .delete()
+                .from('recipes_cookenu')
+                .where({ id })
 
             return result
         } catch (error: any) {
-            throw new Error("Erro update")
+            throw new Error(error.sqlMessage || error.message)
         }
     }
 

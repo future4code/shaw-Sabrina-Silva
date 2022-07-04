@@ -15,13 +15,13 @@ Content-Type: application/json
 
 {
  
-   "email": "sabrina@sabrina.com" ,
-   "password": "poiuytre"
+   "email": "rena@hotmail.com" ,
+   "password": "12345678"
 }
 
 ###
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyNTI0ODc0LTcyZDgtNDJjNC05MWIyLTQwYmU4ZGZhOWI3ZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTY4NjExMzl9.23feDoYTf62w-g5cT28HvNzyABDxiWeVO54zpHNgYew
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyNTI0ODc0LTcyZDgtNDJjNC05MWIyLTQwYmU4ZGZhOWI3ZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTY5MzgxNzZ9.Iwae3Ua_5oWPKk8IZTaw5y9qAysNfDGzYPB3Hugfs64
 
 GET http://localhost:3003/user/profile
 Authorization: {{token}}
@@ -32,28 +32,28 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-   "title": "Teste",
-   "description": "Unte uma pedra de mármore ou uma assadeira com um pouco de óleo. Misture em uma panela o coco, o leite condensado e o açúcar. Leve ao fogo e misture bem, cozinhe misturando regularmente com uma colher de pau. Quando o doce começar a ser soltar do fundo da panela, retire do fogo e acrescente a manteiga. Bata bem com a colher de pau para que o doce açucare. Despeje sobre o mármore untado e deixe esfriar. Corte quadrados de 10 x 10 cm."
+   "title": "TESTE",
+   "description": "teste"
 }
 
 ###
 
-GET http://localhost:3003/user/profile/b7565e42-0cd3-4fbf-b915-fdffc85c511e
+GET http://localhost:3003/user/profile/52524874-72d8-42c4-91b2-40be8dfa9b7d
 Authorization: {{token}}
 
 ###
 
-GET http://localhost:3003/recipe/144fd345-8ccf-40c2-8c78-4799e8004ea1
+GET http://localhost:3003/recipe/73eb385d-fb09-4999-925e-9256789e4ed7
 Authorization: {{token}}
 
 ###
 
-GET http://localhost:3003/user/feed
+GET http://localhost:3003/user/feed/
 Authorization: {{token}}
 
 ###
 
-PUT http://localhost:3003/recipe/edit/3c1e71d7-a714-4218-b012-ea1b0395da25
+PUT http://localhost:3003/recipe/edit/73eb385d-fb09-4999-925e-9256789e4ed7
 Content-Type: application/json
 Authorization: {{token}}
 
@@ -61,3 +61,8 @@ Authorization: {{token}}
    "title": "SOPA DE LEGUMES COM MACARRÃO",
    "description": "Coloque um fio de óleo na panela de pressão.Acrescente a cebola e deixe dourar. Acrescente a carne bovina e deixe dourar. Acrescente o tomate picado. Coloque o caldo de carne e o envelope de tempero tipo sazon.Junte as batatas, as cenouras, as mandioquinhas e as vagens e deixe refogar por 3 minutinhos (sempre mexendo para não grudar no fundo da panela). Adicione a salsinha e a cebolinha, a pimenta, o sal e, por último, a água. Obs: A água deve ser adicionada até que ultrapasse um pouco mais da metade da panela de pressão. Tampe a panela de pressão e deixe cozinhar por 40 minutos. Após os 40 minutos, destampe a panela e acrescente o macarrão. Assim que o macarrão estiver cozido, desligue a panela e pode servir. Dica: Não deixe o macarrão muito mole."
 }
+
+###
+
+DELETE http://localhost:3003/recipe/delete/52524874-72d8-42c4-91b2-40be8dfa9b7d
+Authorization: {{token}}

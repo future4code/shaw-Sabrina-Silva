@@ -18,7 +18,7 @@ export const getRecipes = async (req: Request, res: Response) => {
 
         if (!recipe) {
             res.statusCode = 404
-            throw new Error('Id não encontrado.')
+            throw new Error('Receita não encontrada.')
         }
 
         const newDate = moment(`${recipe.createDate}`).format("DD-MM-YYYY")

@@ -1,0 +1,40 @@
+POST http://localhost:3003/user/singup
+Content-Type: application/json
+
+{
+    "name":"Roberto",
+    "email":"roberto@gmail.com",
+    "password":"12345678"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"roberto@gmail.com",
+    "password":"12345678"
+}
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0YzMwNjkzLTRjN2EtNDc0OS05MWE4LWJjMDM5ZWNmMTM3YyIsImlhdCI6MTY1NzIwMTE1N30.p-lSjBFwUP8XME780rcDKOcuKbUAdIZt4yrr5AsRAQA
+
+POST http://localhost:3003/post/create
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "photo":"linkKKK",
+    "description":"testeeeeAAAAAAAAA",
+    "type":"NORMAL",
+    "autor_id": "0df6b371-12ba-4db0-afdc-76c730a41dae"
+}
+
+###
+
+
+GET http://localhost:3003/post/c0581fbd-969e-47cb-b0c7-361b325bea10
+Authorization: {{token}}
+

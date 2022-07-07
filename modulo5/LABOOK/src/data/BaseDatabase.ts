@@ -15,4 +15,8 @@ export class BaseDatabase {
             multipleStatements: true
         }
     })
+
+    public Connection(){
+        return this.connection
+    }
 }

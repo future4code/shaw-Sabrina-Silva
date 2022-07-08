@@ -1,71 +1,87 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, TitleH3} from "./styled";
+import { Container, TitleH3 } from "./styled";
 import { useMatches } from "../../hooks/useMatches";
 
-const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/sabrina-shaw/";
+const url =
+  "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/sabrina-shaw/";
 
 export const MatchList = () => {
-   const [matchList, setMatchList] = useState([{}])
+  const [matchList, setMatchList] = useState([{}]);
 
-   console.log(matchList);
+  console.log(matchList);
 
-   const getMatches = () => {
+  const getMatches = () => {
     axios
-    .get ("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/sabrina-shaw/matches")
-    .then ((res)=>{
-        console.log(res.data)
-        setMatchList(res.data.matches)
-    }) 
-    .catch ((err)=>{
-        alert("Erro!", err.response)
-    })
-   }
+      .get(
+        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/sabrina-shaw/matches"
+      )
+      .then((res) => {
+        
+      // setMatchList(res.data.matchList);
 
-   useEffect(() => {
+      })
+      .catch((err) => {
+        alert("Erro!", err.response);
+      });
+  };
+
+  useEffect(() => {
     getMatches();
   }, []);
-  
+
   const matches = useMatches();
 
   const putClear = () => {
-      axios
+    axios
       .put(`${url}clear`)
-      .then(()=>{
-          setMatchList([])
+      .then(() => {
+        setMatchList([]);
       })
-      .catch((err)=>{
-        alert("Erro ao excluir matches!", err.response)
-      })
-  }
+      .catch((err) => {
+        alert("Erro ao excluir matches!", err.response);
+      });
+  };
 
-const List = matchList.response
-let renderList
- renderList = List ? matchList[0].response.map((match)=>{
-     console.log(match);
-    return(
-        <div key={match.id}>
-            <img src={match.photo} alt= {match.name}/>
-            <p>{match.name}</p>
-        </div>
-    )
-}): renderList = <p>Erro! Sem matches</p>
+//   const List = matchList.response;
+//   let renderList;
+//   renderList = List
+//     ? matchList[0].response.map((match) => {
+//         console.log(match);
+//         return (
+//           <div key={match.id}>
+//             <img src={match.photo} alt={match.name} />
+//             <p>{match.name}</p>
+//           </div>
+//         );
+//       })
+//     : (renderList = <p>Erro! Sem matches</p>);
 
-
-    return (
-        <Container>
-            <>
-            <TitleH3>Seus Matches</TitleH3>
-            </>
-            {matches.map(profile=> {
+//   {
+    /* <ListContainer>
+{matchList.map((profile) => {
+  return <MatchListItem profile={profile} />;
+})}
+</ListContainer> */
+ // }
+  return (
+    <Container>
+      <>
+        <TitleH3>Seus Matches</TitleH3>
+      </>
+      {/* {matches.map(profile=> {
         return (
             <div key={profile.id}>
                 {profile.name}
             </div>
         )
-    })}
-            <button onClick={()=> putClear()}>Excluir matches</button>
-        </Container>
-    )
-}
-
+    })} */}
+      {matchList.map((profile) => {
+        return <div key={profile.id}>
+        {profile.name}
+    </div>
+      })}
+      <button onClick={() => putClear()}>Excluir matches</button>
+    </Container>
+  );
+};

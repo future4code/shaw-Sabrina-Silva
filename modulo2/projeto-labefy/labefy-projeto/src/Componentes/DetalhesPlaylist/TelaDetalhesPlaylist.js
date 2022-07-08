@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import styled from "styled-components";
 import { ContainaerDetalhesPlaylist, Lista, ButtonDeletar, ButtonAdicionarMusica } from "./styledDetalhesPlaylist";
 
 const headers = {
@@ -70,13 +69,8 @@ export default class TelaDetalhesPlaylist extends React.Component {
       return (
         <Lista 
         key={playlists.id}>
-          {/* <div 
-          key= {playlists.id}
-          onClick = {() => this.trocarPagina(playlists.id)}
-          > */}
             <p>{playlists.name}</p>
             <ButtonDeletar onClick={() => this.deletePlaylist(playlists.id)}>X</ButtonDeletar>
-          {/* </div> */}
         </Lista>
       );
     });
@@ -88,7 +82,7 @@ export default class TelaDetalhesPlaylist extends React.Component {
         <ButtonAdicionarMusica onClick={this.props.irParaMusicaPlaylist}>
          Adicionar Musicas
         </ButtonAdicionarMusica>
-        {/* <button onClick={this.props.irParaCriarPlaylist}>Voltar ao Inicio</button> */}
+        <ButtonAdicionarMusica onClick={this.props.irParaCriarPlaylist}>Voltar</ButtonAdicionarMusica>
       </ContainaerDetalhesPlaylist>
     );
   }

@@ -1,0 +1,27 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+ 
+   "email": "bruno@bruno.com" ,
+   "password": "qoaprtf",
+   "role": "NORMAL"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+ 
+   "email": "rogerio@rogerio.com" ,
+   "password": "qwertyu"
+}
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkMzhmN2I5LWU2YjgtNDM4Yy1iYWZiLWQ1OGIxMGY2NmE5MSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTY0MzAwNTl9.sdlvtDv0R6UgHEfa4R0OBxvsnhG6NaCywXE_o72Jp6o
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}}

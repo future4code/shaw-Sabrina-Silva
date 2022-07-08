@@ -1,0 +1,48 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM2YjMzMDc2LTY1NDMtNGE0YS05OGRmLTc1YzVmYWE4NzQwZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk1NTMzN30.6NT8Zal_smEoqIOMvwdUIbbk42a7EKm_TZWPJpT0XLI
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name":"Matheus",
+    "nickname":"matheus",
+    "email":"matheus@gmail.com",
+    "password":"12345678",
+    "role":"ADMIN"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"sabrina@gmail.com",
+    "password":"qwertyy"
+}
+
+###
+
+GET http://localhost:3003/allUser
+Authorization: {{token}}
+
+###
+
+DELETE http://localhost:3003/user/delete/fa1262cc-dcaa-4127-8aed-a5c6e3a619d3
+Authorization: {{token}}
+
+###
+
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title":"Dar banho no cachorro",
+    "description": "Banho no toto",
+    "user_id":"36b33076-6543-4a4a-98df-75c5faa8740f"
+}
+
+
+###
+
+GET http://localhost:3003/task/764bbfa9-c81b-4da5-8679-d081f68a3512

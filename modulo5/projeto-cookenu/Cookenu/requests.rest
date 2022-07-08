@@ -1,0 +1,68 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Renatta",
+   "email": "rena@hotmail.com" ,
+   "password": "12345678",
+   "role": "NORMAL"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+ 
+   "email": "rena@hotmail.com" ,
+   "password": "12345678"
+}
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyNTI0ODc0LTcyZDgtNDJjNC05MWIyLTQwYmU4ZGZhOWI3ZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTY5MzgxNzZ9.Iwae3Ua_5oWPKk8IZTaw5y9qAysNfDGzYPB3Hugfs64
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+###
+POST http://localhost:3003/recipe/create
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+   "title": "TESTE",
+   "description": "teste"
+}
+
+###
+
+GET http://localhost:3003/user/profile/52524874-72d8-42c4-91b2-40be8dfa9b7d
+Authorization: {{token}}
+
+###
+
+GET http://localhost:3003/recipe/73eb385d-fb09-4999-925e-9256789e4ed7
+Authorization: {{token}}
+
+###
+
+GET http://localhost:3003/user/feed/
+Authorization: {{token}}
+
+###
+
+PUT http://localhost:3003/recipe/edit/73eb385d-fb09-4999-925e-9256789e4ed7
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+   "title": "SOPA DE LEGUMES COM MACARRÃO",
+   "description": "Coloque um fio de óleo na panela de pressão.Acrescente a cebola e deixe dourar. Acrescente a carne bovina e deixe dourar. Acrescente o tomate picado. Coloque o caldo de carne e o envelope de tempero tipo sazon.Junte as batatas, as cenouras, as mandioquinhas e as vagens e deixe refogar por 3 minutinhos (sempre mexendo para não grudar no fundo da panela). Adicione a salsinha e a cebolinha, a pimenta, o sal e, por último, a água. Obs: A água deve ser adicionada até que ultrapasse um pouco mais da metade da panela de pressão. Tampe a panela de pressão e deixe cozinhar por 40 minutos. Após os 40 minutos, destampe a panela e acrescente o macarrão. Assim que o macarrão estiver cozido, desligue a panela e pode servir. Dica: Não deixe o macarrão muito mole."
+}
+
+###
+
+DELETE http://localhost:3003/recipe/delete/52524874-72d8-42c4-91b2-40be8dfa9b7d
+Authorization: {{token}}

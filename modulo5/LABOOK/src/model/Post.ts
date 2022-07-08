@@ -1,3 +1,5 @@
+import { authenticationData } from "../types/authData"
+
 export enum POST_ROLES {
     NORMAL = 'NORMAL',
     ADMIN = 'EVENT'

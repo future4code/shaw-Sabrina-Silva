@@ -14,14 +14,14 @@ export class Authenticator {
         )
     }
 
-    getTokenData = (
+ public getTokenData = (
         token: string
     ): authenticationData => {
         const data = jwt.verify(token, process.env.JWT_KEY as string) as authenticationData
         const result = {
-            id: data.id,
-           // role: data.role
+            id: data.id
         }
+
         return result
     }
 

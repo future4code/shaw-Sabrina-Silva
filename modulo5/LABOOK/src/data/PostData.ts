@@ -10,8 +10,10 @@ export class PostData extends BaseDatabase{
         try{
             await this.connection(this.TABLE_NAME)
             .insert(post)
+            console.log(post);
+            
         }catch(error:any){
-            throw new Error("Erro insertPost")
+            throw new Error( error.sqlMessage || error.message )
         }
     }
 
@@ -40,6 +42,32 @@ export class PostData extends BaseDatabase{
         .where({id})
        
         return result
+    }
+
+    async selectAllPostsByPage(page:number){
+
+        const size = 5
+
+        let offset = size * (page - 1)
+
+        const result = await this.connection(this.TABLE_NAME)
+        .select("*")
+        .limit(size)
+        .offset(offset)
+
+        
+        return result
+
+    }
+
+    async selectPostByType(type:string){
+
+        const result = await this.connection(this.TABLE_NAME)
+        .select("*")
+        .where("type", "like", `${type}`)
+
+        return result
+        
     }
     
 }

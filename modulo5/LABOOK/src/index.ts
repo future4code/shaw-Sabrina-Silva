@@ -1,6 +1,7 @@
 import PostBusiness from "./business/PostBusiness"
 import UserBusiness from "./business/UserBusiness"
 import { app } from "./controller/app"
+import FriendController from "./controller/FriendController"
 import PostController from "./controller/PostController"
 import UserController from "./controller/UserController"
 import { PostData } from "./data/PostData"
@@ -21,8 +22,13 @@ const postController = new PostController(
     postBusiness
 )
 
+const friendController = new FriendController()
+
 app.post("/user/singup", userController.singup)
 app.post("/user/login", userController.login)
 
 app.post("/post/create", postController.createPost)
 app.get("/post/:id", postController.getPostById)
+app.get("/all-posts/:page", postController.getPostsByPage)
+
+app.post("/user/invite-friend/:your_id", friendController.postInviteFriend)

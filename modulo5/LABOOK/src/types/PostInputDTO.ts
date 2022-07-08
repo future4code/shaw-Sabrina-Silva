@@ -4,5 +4,4 @@ export type PostInputDTO = {
     photo: string,
     description: string,
     type: POST_ROLES,
-    autor_id: string
 }

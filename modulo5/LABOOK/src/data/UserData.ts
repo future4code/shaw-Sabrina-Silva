@@ -22,6 +22,5 @@ export default class UserData  extends BaseDatabase{
         await this.connection(this.TABLE_NAME)
          .insert(user)
     }
-
     
 }

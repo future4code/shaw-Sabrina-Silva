@@ -18,13 +18,17 @@ export default class UserBusiness {
         const { name, email, password } = input
 
         if (!name || !email || !password) {
-            throw new Error('Preencha os campos "name","nickname", "email" e "password"')
+            throw new Error('Fill in the fields, please')
+        }
+
+        if (name !== String(name) || email !== String(email) || password !== String(password)) {
+            throw new Error('Invalid values')
         }
 
         const registeredUser = await this.userData.findByEmail(email)
 
         if (registeredUser) {
-            throw new Error("Usuário já cadastrado")
+            throw new Error("User already registered")
         }
 
         const id = IdGenerator.generateId()
@@ -49,23 +53,23 @@ export default class UserBusiness {
         const { email, password } = user
 
         if (!email || !password) {
-            throw new Error("'email' e 'senha' são obrigatórios")
+            throw new Error("Please, 'email' and 'password' are mandatory")
         }
 
         if (email !== String(email) || password !== String(password)) {
-            throw new Error("Valores invalidos")
+            throw new Error("Invalid values")
         }
 
         const registeredUser = await this.userData.findByEmail(email)
 
         if (!registeredUser) {
-            throw new Error("Email ou senha invalidos")
+            throw new Error("Email or password invalid")
         }
 
         const passwordIsCorrect: boolean = await compare(password, registeredUser.password)
 
         if (!passwordIsCorrect) {
-            throw new Error("Usuário não encontrado ou senha incorreta")
+            throw new Error("User not found or password incorrect")
         }
 
         const token = this.authenticator.generateToken({id: registeredUser.id })

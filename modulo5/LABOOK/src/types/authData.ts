@@ -4,6 +4,5 @@ export enum USER_ROLES {
  }
  
  export type authenticationData = {
-    id: string,
-   // role: USER_ROLES
+    id: string
  }

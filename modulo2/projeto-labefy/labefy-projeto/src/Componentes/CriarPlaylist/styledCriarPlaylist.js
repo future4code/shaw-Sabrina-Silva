@@ -43,7 +43,7 @@ export const Input = styled.input`
   }
 `;
 export const ButtonCriar = styled.button`
-  margin-top: 6rem;
+  margin-top: 4rem;
   border-radius: 4rem;
   border-color: #1e90ff;
   color: #1e90ff;
@@ -69,8 +69,8 @@ export const ButtonDetalhesPlaylist = styled.button`
   border-color: #1e90ff;
   color: #1e90ff;
   background-color: black;
-  width: 9rem;
-  height: 3.5rem;
+  width: 8rem;
+  height: 2.5rem;
   font-size: 0.98rem;
   cursor: pointer;
   

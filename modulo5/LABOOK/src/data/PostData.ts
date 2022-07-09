@@ -1,5 +1,6 @@
 import moment from "moment"
 import Post from "../model/Post"
+import { typePostSortedByType } from "../types/postSortedTypeDTO"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class PostData extends BaseDatabase {
@@ -71,12 +72,12 @@ export class PostData extends BaseDatabase {
         }
     }
 
-    async selectPostByType(type: string, sort: string, order: string) {
+    async selectPostByType(value: typePostSortedByType) {
         try {
             const result = await this.connection(this.TABLE_NAME)
                 .select("*")
-                .where("type", "like", `${type}`)
-                .orderBy(sort, order)
+                .where("type", "like", `${value.type}`)
+                .orderBy(value.sort, value.order)
                 
             return result
         } catch (error: any) {

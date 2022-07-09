@@ -5,7 +5,15 @@ export default class FriendBusiness {
         private friendData: FriendData
     ) { }
 
-    async inviteFriendBusiness(your_id: string, friend_id: string) {
+    async inviteFriendBusiness(your_id: string, friend_id: string, token:string) {
+        
+        if (!token) {
+            throw new Error('Please provide a token')
+        }
+
+        if (token !== String(token)) {
+            throw new Error('Invalid values')
+        }
 
         const verifyFriendship = await this.friendData.selectFriend(your_id, friend_id)
 
@@ -15,7 +23,7 @@ export default class FriendBusiness {
 
         const invite = await this.friendData.makeFriend(your_id, friend_id)
 
-        if (your_id !== String(your_id) || friend_id !== String(friend_id)) {
+        if (your_id !== String(your_id) || friend_id === String(friend_id)) {
             throw new Error("Invalid values")
         }
 
@@ -26,7 +34,21 @@ export default class FriendBusiness {
         return invite
     }
 
-    async deleteFrienBusiness(your_id: string, friend_id: string) {
+    async deleteFrienBusiness(your_id: string, friend_id: string, token:string) {
+        
+        if (!token) {
+            throw new Error('Please provide a token')
+        }
+
+        if (token !== String(token)) {
+            throw new Error('Invalid values')
+        }
+        
+        const verifyFriendship = await this.friendData.selectFriend(your_id, friend_id)
+
+        if (!verifyFriendship) {
+            throw new Error("Friend not found")
+        }
         
         if (your_id !== String(your_id) || friend_id !== String(friend_id)) {
             throw new Error("Invalid values")

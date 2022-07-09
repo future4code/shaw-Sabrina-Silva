@@ -15,7 +15,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email":"",
+    "email":"roberto@gmail.com",
     "password":"12345678"
 }
 
@@ -32,8 +32,8 @@ Content-Type: application/json
 
 {
     "photo":"link",
-    "description":"Comendo um churros",
-    "type":"NORMAL"
+    "description":"Baladinha",
+    "type":"EVENT"
 }
 
 ###
@@ -46,6 +46,7 @@ Authorization: {{token}}
 
 #Fazendo amizade
 POST http://localhost:3003/user/invite-friend/0df6b371-12ba-4db0-afdc-76c730a41dae
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -56,7 +57,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3003/user/delete-friend/0df6b371-12ba-4db0-afdc-76c730a41dae/11b0b7f3-bbe2-4e2e-86b1-2bf540e30ab4
-
+Authorization: {{token}}
 
 ###
 
@@ -67,3 +68,4 @@ Authorization: {{token}}
 ###
 #Pegar feed ordenado e por tipo
 GET http://localhost:3003/all-posts-sorted?type=NORMAL&sort=create_at&order=desc
+Authorization: {{token}}

@@ -2,11 +2,9 @@ import { Request, Response } from "express"
 import PostBusiness from "../business/PostBusiness"
 import { PostData } from "../data/PostData"
 import { PostInputDTO } from "../types/PostInputDTO"
+import { typePostSortedByType } from "../types/postSortedTypeDTO"
 
 export default class PostController {
-    constructor(
-        private postBusiness: PostBusiness
-    ) { }
 
     async createPost(req: Request, res: Response) {
         try {
@@ -48,6 +46,7 @@ export default class PostController {
         }
     }
 
+    
     async getPostsByPage(req: Request, res: Response) {
         try {
             const token: string = req.headers.authorization as string
@@ -67,13 +66,21 @@ export default class PostController {
 
     async getPostsByTypeAndOrder(req: Request, res: Response) {
         try {
-            let type = String(req.query.type)
+            const token: string = req.headers.authorization as string
+
+            let type= String(req.query.type)
             let sort = String(req.query.sort)
             let order = String(req.query.order)
 
+            const postsSorted:typePostSortedByType = {
+                type: type,
+                sort: sort,
+                order: order
+            }
+
             const post = new PostBusiness(new PostData())
 
-            const postsSortedByType = await post.getPostByType(type, sort, order)
+            const postsSortedByType = await post.getPostByType(postsSorted, token)
             
             res.status(201).send({postsSortedByType})
         } catch (error: any) {

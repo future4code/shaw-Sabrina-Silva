@@ -5,6 +5,7 @@ import { PostInputDTO } from "../types/PostInputDTO"
 import Post from "../model/Post"
 import { Authenticator } from "../services/Authenticator";
 import { authenticationData } from "../types/authData";
+import { typePostSortedByType } from "../types/postSortedTypeDTO";
 
 export default class PostBusiness {
     constructor(
@@ -93,9 +94,31 @@ export default class PostBusiness {
         return postByPage
     }
 
-    async getPostByType(type:string, sort:string, order: string){
+    async getPostByType(value: typePostSortedByType, token:string){
         
-        const posts = await this.postData.selectPostByType(type, sort, order)
+        if (!token) {
+            throw new Error('Please provide a token')
+        }
+
+        if (token !== String(token)) {
+            throw new Error('Invalid values')
+        }
+        
+        if (!value.type || !value.order || !value.sort) {
+            throw new Error('Fill in the fields, please')
+        }
+
+        if (value.type !== String(value.type) || value.order !== String(value.order) || value.sort !== String(value.sort)) {
+            throw new Error('Invalid values')
+        }
+
+        const post = {
+            type: value.type,
+            sort:value.sort,
+            order: value.order
+        }
+
+        const posts = await this.postData.selectPostByType(post)
 
         return posts
     }

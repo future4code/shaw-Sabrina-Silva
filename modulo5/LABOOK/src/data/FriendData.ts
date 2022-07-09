@@ -39,17 +39,17 @@ export default class FriendData extends BaseDatabase {
         }
     }
 
-    async selectAllFriendsPosts(){
-        try{
-            const result = await this.connection(this.TABLE_NAME)
-            .select("*")
-            .from(this.TABLE_NAME)
-            .innerJoin("friends", "friends.friend_id",)
+    // async selectAllFriendsPosts(){
+    //     try{
+    //         const result = await this.connection(this.TABLE_NAME)
+    //         .select("*")
+    //         .from(this.TABLE_NAME)
+    //         .innerJoin("friends", "friends.friend_id")
             
 
-        }catch(error:any){
-            throw new Error(error.sqlMessage || error.message)
-        }
-    }
+    //     }catch(error:any){
+    //         throw new Error(error.sqlMessage || error.message)
+    //     }
+    // }
 
 }

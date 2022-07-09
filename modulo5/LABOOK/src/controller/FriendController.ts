@@ -3,17 +3,38 @@ import FriendBusiness from "../business/FriendBusiness";
 import FriendData from "../data/FriendData";
 
 export default class FriendController {
-    async postInviteFriend(req: Request, res: Response){
-       
-        const your_id = req.params.your_id
-        const friend_id = req.body
 
-        const friendBusiness = new FriendBusiness( new FriendData())
+    async postInviteFriend(req: Request, res: Response) {
+        try {
 
-         await friendBusiness.inviteFriend(your_id, friend_id)
+            const your_id = req.params.your_id
+            const friend_id = req.body.friend_id
 
-        res.status(201).send({ message: "Agora vcs são amigos"})
+            const friendBusiness = new FriendBusiness(new FriendData())
 
+            await friendBusiness.inviteFriendBusiness(your_id, friend_id)
+
+            res.status(201).send({ message: "Agora vcs são amigos" })
+
+        } catch (error: any) {
+            res.status(500).send({ message: error.message || error.sqlMessage })
+        }
+    }
+
+    async deleteFriendship(req: Request, res: Response) {
+        try {
+            const your_id = req.params.your_id
+            const friend_id = req.params.friend_id
+
+            const friendBusiness = new FriendBusiness(new FriendData())
+
+            await friendBusiness.deleteFrienBusiness(your_id, friend_id)
+            
+            res.status(201).send({ message: "Broken friendship" })
+
+        } catch (error: any) {
+            res.status(500).send({ message: error.message || error.sqlMessage })
+        }
     }
 
 }

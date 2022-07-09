@@ -30,5 +30,7 @@ app.post("/user/login", userController.login)
 app.post("/post/create", postController.createPost)
 app.get("/post/:id", postController.getPostById)
 app.get("/all-posts/:page", postController.getPostsByPage)
+app.get("/all-posts-sorted", postController.getPostsByTypeAndOrder)
 
 app.post("/user/invite-friend/:your_id", friendController.postInviteFriend)
+app.delete("/user/delete-friend/:your_id/:friend_id", friendController.deleteFriendship)

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import UserBusiness from "../business/UserBusiness";
 import UserData from "../data/UserData";
 import { Authenticator } from "../services/Authenticator";
-import { IdGenerator } from "../services/Generator";
 import { HashManager } from "../services/HashManager";
 import { LoginInputDTO } from "../types/LoginInputDTO";
 import { SingupInputDTO } from "../types/singupInputDTO";
@@ -61,7 +60,7 @@ export default class UserController {
             res.status(201).send({ message: "usuario logado com sucesso", token })
 
         }catch (error:any){
-            res.status(500).send({ message: error.message })
+            res.status(500).send({ message: error.message || error.sqlMessage })
         }
     }
 }

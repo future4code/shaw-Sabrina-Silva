@@ -8,9 +8,9 @@ export default class PostController {
         private postBusiness: PostBusiness
     ) { }
 
-    async createPost(req: Request, res: Response){
-        try{
-            const { photo, description, type} = req.body
+    async createPost(req: Request, res: Response) {
+        try {
+            const { photo, description, type } = req.body
 
             const token: string = req.headers.authorization as string
 
@@ -18,51 +18,65 @@ export default class PostController {
                 photo, description, type
             }
 
-            const post = new PostBusiness( new PostData())
+            const post = new PostBusiness(new PostData())
 
-             await post.createPost(input, token)
+            await post.createPost(input, token)
 
-            res.status(201).send({ message: "Post created"})
+            res.status(201).send({ message: "Post created" })
 
-        }catch(error:any){
+        } catch (error: any) {
             res.send({ message: error.sqlMessage || error.message })
         }
     }
 
 
-    async getPostById(req: Request, res: Response){
-        try{
+    async getPostById(req: Request, res: Response) {
+        try {
 
             const token: string = req.headers.authorization as string
 
             const id = req.params.id
 
-            const post = new PostBusiness( new PostData())
+            const post = new PostBusiness(new PostData())
             const newPost = await post.getPost(id, token)
 
-            res.status(201).send({newPost} )
+            res.status(201).send({ newPost })
 
-        }catch(error:any){
+        } catch (error: any) {
 
             res.send({ message: error.sqlMessage || error.message })
         }
     }
 
-    async getPostsByPage(req: Request, res: Response){
-        try{
+    async getPostsByPage(req: Request, res: Response) {
+        try {
             const token: string = req.headers.authorization as string
 
             const page = Number(req.params.page)
 
-            const post = new PostBusiness( new PostData())
-            
+            const post = new PostBusiness(new PostData())
+
             const postByPage = await post.getPostsByPage(page, token)
 
-            console.log(postByPage);
-            
             res.status(201).send(postByPage)
 
-        }catch (error:any){
+        } catch (error: any) {
+            res.send({ message: error.sqlMessage || error.message })
+        }
+    }
+
+    async getPostsByTypeAndOrder(req: Request, res: Response) {
+        try {
+            let type = String(req.query.type)
+            let sort = String(req.query.sort)
+            let order = String(req.query.order)
+
+            const post = new PostBusiness(new PostData())
+
+            const postsSortedByType = await post.getPostByType(type, sort, order)
+            
+            res.status(201).send({postsSortedByType})
+        } catch (error: any) {
             res.send({ message: error.sqlMessage || error.message })
         }
     }

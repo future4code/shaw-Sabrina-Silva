@@ -12,7 +12,7 @@ export default class PostBusiness {
     ) { }
 
     async createPost(post: PostInputDTO, token: string) {
-
+      
         if (!token) {
             throw new Error('Not authorized')
         }
@@ -61,6 +61,10 @@ export default class PostBusiness {
             throw new Error('Not found')
         }
 
+        if (id !== String(id) || token !== String(token)) {
+            throw new Error('Invalid values')
+        }
+
         const post = await this.postData.selectById(id)
 
         if (!post) {
@@ -80,12 +84,19 @@ export default class PostBusiness {
             throw new Error('Please provide a token')
         }
 
+        if (token !== String(token)) {
+            throw new Error('Invalid values')
+        }
+
         const postByPage = await this.postData.selectAllPostsByPage(page)
 
         return postByPage
     }
 
-    async getPostByType(type:string){
+    async getPostByType(type:string, sort:string, order: string){
         
+        const posts = await this.postData.selectPostByType(type, sort, order)
+
+        return posts
     }
 }

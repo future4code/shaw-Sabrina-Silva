@@ -32,8 +32,8 @@ Content-Type: application/json
 
 {
     "photo":"link",
-    "description":"Grupo de estudos",
-    "type":"EVENT"
+    "description":"Comendo um churros",
+    "type":"NORMAL"
 }
 
 ###
@@ -44,7 +44,7 @@ Authorization: {{token}}
 
 ###
 
-#Fazendo amizade ---- NÃO FUNCIONA ----
+#Fazendo amizade
 POST http://localhost:3003/user/invite-friend/0df6b371-12ba-4db0-afdc-76c730a41dae
 Content-Type: application/json
 
@@ -55,6 +55,15 @@ Content-Type: application/json
 
 ###
 
+DELETE http://localhost:3003/user/delete-friend/0df6b371-12ba-4db0-afdc-76c730a41dae/11b0b7f3-bbe2-4e2e-86b1-2bf540e30ab4
+
+
+###
+
 #Pegar feed com paginação
 GET http://localhost:3003/all-posts/1
 Authorization: {{token}}
+
+###
+#Pegar feed ordenado e por tipo
+GET http://localhost:3003/all-posts-sorted?type=NORMAL&sort=create_at&order=desc

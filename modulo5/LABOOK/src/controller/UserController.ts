@@ -8,10 +8,6 @@ import { SingupInputDTO } from "../types/singupInputDTO";
 
 export default class UserController {
 
-// constructor(
-//     private userBusiness:UserBusiness
-// ){}
-
     async singup(req: Request, res: Response) {
         try {
             const { name, email, password } = req.body
@@ -28,13 +24,10 @@ export default class UserController {
 
             const token = await user.singup(input)
 
-            res.status(201).send({ message: "Usuário cadastrado com sucesso", token})
+            res.status(201).send({ message: "User registered successfully", token})
 
-        } catch (error) {  
-            if(error instanceof Error){
-                return res.status(400).send(error.message)
-            }
-            res.status(500).send("Erro Singup!")
+        } catch (error:any) {  
+            res.status(500).send({ message: error.message || error.sqlMessage })
         }
 
     }

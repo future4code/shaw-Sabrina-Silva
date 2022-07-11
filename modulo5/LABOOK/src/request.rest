@@ -3,9 +3,9 @@ POST http://localhost:3003/user/singup
 Content-Type: application/json
 
 {
-    "name":"Roberto",
-    "email":"roberto@gmail.com",
-    "password":"12345678"
+    "name":"Naruto",
+    "email":"narutinho@hotmail.com",
+    "password":"poiuytr"
 }
 
 ###
@@ -62,10 +62,10 @@ Authorization: {{token}}
 ###
 
 #Pegar feed com paginação
-GET http://localhost:3003/all-posts/1
+GET http://localhost:3003/post/all-posts/1
 Authorization: {{token}}
 
 ###
 #Pegar feed ordenado e por tipo
-GET http://localhost:3003/all-posts-sorted?type=NORMAL&sort=create_at&order=desc
+GET http://localhost:3003/post/all-posts-sorted?type=NORMAL&sort=create_at&order=desc
 Authorization: {{token}}

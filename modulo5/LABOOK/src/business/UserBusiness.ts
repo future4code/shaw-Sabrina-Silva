@@ -25,6 +25,14 @@ export default class UserBusiness {
             throw new Error('Invalid values')
         }
 
+        if (email.indexOf("@") === -1) {
+            throw new Error("Invalid email ")
+        }
+
+        if (password.length < 6) {
+            throw new Error("Your password must contain more than 6 digits");
+        }
+
         const registeredUser = await this.userData.findByEmail(email)
 
         if (registeredUser) {
@@ -60,6 +68,10 @@ export default class UserBusiness {
             throw new Error("Invalid values")
         }
 
+        if (email.indexOf("@") === -1) {
+            throw new Error("Invalid email ")
+        }
+
         const registeredUser = await this.userData.findByEmail(email)
 
         if (!registeredUser) {
@@ -72,7 +84,7 @@ export default class UserBusiness {
             throw new Error("User not found or password incorrect")
         }
 
-        const token = this.authenticator.generateToken({id: registeredUser.id })
+        const token = this.authenticator.generateToken({ id: registeredUser.id })
 
         return token
     }

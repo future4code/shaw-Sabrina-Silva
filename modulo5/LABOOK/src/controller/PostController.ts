@@ -82,9 +82,12 @@ export default class PostController {
 
             const postsSortedByType = await post.getPostByType(postsSorted, token)
             
+            console.log(postsSortedByType);
+            
             res.status(201).send({postsSortedByType})
+
         } catch (error: any) {
-            res.send({ message: error.sqlMessage || error.message })
+            res.send({ aaaaamessageeee: error.message })
         }
     }
 }

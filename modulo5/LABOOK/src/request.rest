@@ -62,7 +62,7 @@ Authorization: {{token}}
 ###
 
 #Pegar feed com paginação
-GET http://localhost:3003/post/all-posts/1
+GET https://labook-shaw-sabrina.herokuapp.com/post/all-posts/1
 Authorization: {{token}}
 
 ###

@@ -81,6 +81,7 @@ export class PostData extends BaseDatabase {
                 
             return result
         } catch (error: any) {
+            console.log(error.message)
             throw new Error(error.sqlMessage || error.message)
         }
     }

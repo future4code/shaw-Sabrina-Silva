@@ -23,10 +23,6 @@ export default class FriendBusiness {
 
         const invite = await this.friendData.makeFriend(your_id, friend_id)
 
-        if (your_id !== String(your_id) || friend_id === String(friend_id)) {
-            throw new Error("Invalid values")
-        }
-
         if (!your_id || !friend_id) {
             throw new Error("Not found")
         }
@@ -50,10 +46,6 @@ export default class FriendBusiness {
             throw new Error("Friend not found")
         }
         
-        if (your_id !== String(your_id) || friend_id !== String(friend_id)) {
-            throw new Error("Invalid values")
-        }
-
         if (!your_id || !friend_id) {
             throw new Error("Not found")
         }

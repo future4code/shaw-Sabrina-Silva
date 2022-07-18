@@ -1,0 +1,71 @@
+#Fazer Cadastro
+POST http://localhost:3003/user/singup
+Content-Type: application/json
+
+{
+    "name":"Naruto",
+    "email":"narutinho@hotmail.com",
+    "password":"poiuytr"
+}
+
+###
+
+#Fazer Login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"roberto@gmail.com",
+    "password":"12345678"
+}
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0YzMwNjkzLTRjN2EtNDc0OS05MWE4LWJjMDM5ZWNmMTM3YyIsImlhdCI6MTY1NzIwMTE1N30.p-lSjBFwUP8XME780rcDKOcuKbUAdIZt4yrr5AsRAQA
+
+###
+
+#Criar Post
+POST http://localhost:3003/post/create
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "photo":"link",
+    "description":"Baladinha",
+    "type":"EVENT"
+}
+
+###
+
+#Pegar post por id
+GET http://localhost:3003/post/c0581fbd-969e-47cb-b0c7-361b325bea10
+Authorization: {{token}}
+
+###
+
+#Fazendo amizade
+POST http://localhost:3003/user/invite-friend/0df6b371-12ba-4db0-afdc-76c730a41dae
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+
+    "friend_id": "11b0b7f3-bbe2-4e2e-86b1-2bf540e30ab4"
+}
+
+###
+
+DELETE http://localhost:3003/user/delete-friend/0df6b371-12ba-4db0-afdc-76c730a41dae/11b0b7f3-bbe2-4e2e-86b1-2bf540e30ab4
+Authorization: {{token}}
+
+###
+
+#Pegar feed com paginação
+GET https://labook-shaw-sabrina.herokuapp.com/post/all-posts/1
+Authorization: {{token}}
+
+###
+#Pegar feed ordenado e por tipo
+GET http://localhost:3003/post/all-posts-sorted?type=NORMAL&sort=create_at&order=desc
+Authorization: {{token}}

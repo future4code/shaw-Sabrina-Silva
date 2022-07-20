@@ -31,6 +31,12 @@ align-items: center;
 justify-content: space-between;
 `
 
+export const DivCheckPassword = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+`
+
 export const ButtonStyled = styled(Button)`
 &&{
     color: #000;

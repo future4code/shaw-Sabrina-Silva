@@ -63,8 +63,8 @@ const Login = () => {
             <p>Entrar</p>
             <Form onSubmit= {onSubmitLogin}>
             <InputMaterial
-           // error={checkErrEmail}
-            //helperText={checkErrEmail ? errEmail: ""}
+            error={checkErrEmail}
+            helperText={checkErrEmail ? errEmail: ""}
             id="outlined-basic1" 
             label="Email" 
             type={'email'}
@@ -76,8 +76,8 @@ const Login = () => {
             />
             <DivPassword>
             <InputMaterial 
-            //error={checkErrPass}
-            //helperText={checkErrPass ? errPass: ""}
+            error={checkErrPass}
+            helperText={checkErrPass ? errPass: ""}
             id="outlined-basic2" 
             label="Password" 
             type={showPassword ?'password' : 'text'}

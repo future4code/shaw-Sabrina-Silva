@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import useForm from "../../Hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import {  IconButton } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { ButtonStyled, DivPassword, Form, Main, InputMaterial} from "./styled";
+import { ButtonStyled, DivPassword, Form, Main, InputMaterial, DivCheckPassword} from "./styled";
 
 const SignUp = () => {
     const [showPassword, setShowPassword]= useState(true)
     const [showCheckPassword, setShowCheckPassword]= useState(true)
     const [confirmPassword, setConfirmPassword] = useState(false)
+    const [checkErrPass, setCheckErrPass]= useState(false)
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
@@ -27,7 +28,12 @@ const SignUp = () => {
 
     const onSubmitForm = (event)=> {
         event.preventDafault()
-        console.log(form);
+       
+       if(form.password !== confirmPassword){
+        setCheckErrPass(true)
+       }else{
+        setCheckErrPass(false)
+       }
     }
 
     const cpfMask = (value)=>{
@@ -79,10 +85,11 @@ const SignUp = () => {
 
             <DivPassword>
             <InputMaterial 
-            //error={checkErrPass}
-            //helperText={checkErrPass ? errPass: ""}
+            error={checkErrPass}
+            helperText={checkErrPass ? "Deve ser a mesma da anterior" : ""}
             id="outlined-basic4" 
-            label="Password" 
+            label="Confirmar" 
+            name="password"
             type={showPassword ?'password' : 'text'}
             variant="outlined"
             placeholder={"Minímo 6 caracteres"}
@@ -91,12 +98,21 @@ const SignUp = () => {
             inputProps={{ minLength: 6, title:"A senha deve conter no minímo 6 caracteres"}}
             required
             />
+            <IconButton
+            aria-label="toggle password visibility"
+            onClick={handleClickShowPassword}
+            edge="end"
+             >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+            </DivPassword>
+            <DivCheckPassword>
             <InputMaterial 
            // error={checkErrPass}
             //helperText={checkErrPass ? Deve ser a mesma da anterior : ""}
             id="outlined-basic4" 
             label="Password" 
-            type={showPassword ?'password' : 'text'}
+            type={showCheckPassword ?'password' : 'text'}
             variant="outlined"
             placeholder={"Minímo 6 caracteres"}
             value={confirmPassword}
@@ -105,13 +121,13 @@ const SignUp = () => {
             required
             />
             <IconButton
-            aria-label="toggle password visibility"
-            onClick={handleClickShowPassword}
+            aria-label="toggle password visibility1"
+            onClick={handleClickCheckShowPassword}
             edge="end"
           >
-            {showPassword ? <VisibilityOff /> : <Visibility />}
+            {showCheckPassword ? <VisibilityOff /> : <Visibility />}
           </IconButton>
-          </DivPassword>
+          </DivCheckPassword>
           <ButtonStyled type= "submit">Entrar</ButtonStyled>
         </Form>
     </Main>

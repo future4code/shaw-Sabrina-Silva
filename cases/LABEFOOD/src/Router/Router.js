@@ -4,16 +4,16 @@ import Feed from '../Pages/Feed/feed'
 import Login from '../Pages/Login/login'
 import Profile from '../Pages/Profile/profile'
 import Restaurant from '../Pages/Restaurant/restaurant'
-import Singup from '../Pages/SingUp/singup'
-import SingUpAdress from '../Pages/SingUpAdress/singUpAdress'
+import Signup from '../Pages/SignUp/signUp'
+import SignUpAdress from '../Pages/SignUpAdress/signUpAdress'
 
 const Router = () => {
     return(
         <BrowserRouter>
             <Routes>
                 <Route index element = {<Login/>}/>
-                <Route path= '/singup'element = {<Singup/>}/>
-                <Route path= '/singup/adress'element = {<SingUpAdress/>}/>
+                <Route path= '/signup'element = {<Signup/>}/>
+                <Route path= '/signup/adress'element = {<SignUpAdress/>}/>
                 <Route path= '/feed'element = {<Feed/>}/>
                 <Route path= '/restaurant'element = {<Restaurant/>}/>
                 <Route path= '/cart'element = {<Cart/>}/>

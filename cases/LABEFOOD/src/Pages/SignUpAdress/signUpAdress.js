@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingUpAdress = () => {
+const SignUpAdress = () => {
     return(
         <div>
             SingUpAdress
@@ -8,4 +8,4 @@ const SingUpAdress = () => {
     )
 }
 
-export default SingUpAdress
+export default SignUpAdress

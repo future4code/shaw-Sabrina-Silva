@@ -1,0 +1,51 @@
+import { Box } from "@mui/material";
+import styled from "styled-components";
+
+export const BoxModal = styled.div`
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 0 1rem;
+  margin: 60% 1rem 50% 1rem;
+`;
+
+export const TitleModal = styled.h3`
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0.25rem;
+`;
+
+export const SelectQuantity = styled.select`
+  padding: 1rem;
+  border-radius: 4px;
+  border: solid 1px green;
+  margin: 1rem 0;
+`;
+export const ButtonAddToCart = styled.button`
+  font-size: 1.1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0.25rem;
+  text-align: center;
+  color: #4f81a8;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  align-self: flex-end;
+`;

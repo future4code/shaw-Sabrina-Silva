@@ -1,10 +1,12 @@
 import { Button, TextField } from "@mui/material";
 import styled from "styled-components";
 
-export const Title = styled.p`
+export const LogoImg = styled.img`
+margin: 5% 0 5% 0;
+`
+
+export const Title = styled.h3`
   font-weight: bold;
-  font-size: 1rem;
-  margin-top: 28px;
   margin-bottom: 20px;
 `;
 
@@ -14,7 +16,7 @@ export const InputMaterial = styled(TextField)`
 `;
 
 export const Main = styled.div`
-  padding: 10px;
+  
   width: 100%;
   height: 100vh;
   display: flex;
@@ -55,7 +57,9 @@ export const DivCheckPassword = styled.div`
 export const ButtonStyled = styled(Button)`
   && {
     color: #000;
-    background-color:#E8222E;
+    background-color: #E8222E;
+    font-weight: 700;
+    font-size: 1.050rem;
     width: 100%;
   }
 `;

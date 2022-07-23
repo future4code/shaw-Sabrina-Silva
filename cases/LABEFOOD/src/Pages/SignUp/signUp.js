@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { goToSignUpAdress } from "../../Router/coordinator";
 import BASE_URL from "../../Constants/url";
 import axios from "axios";
+import Header from "../../Components/Header/Header"
 import {
   FormControl,
   IconButton,
@@ -11,6 +12,7 @@ import {
   InputLabel,
   OutlinedInput,
 } from "@mui/material";
+import logo from "../../Assets/ImgLogo/logo-future-eats-invert.png"
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import {
   ButtonStyled,
@@ -18,6 +20,7 @@ import {
   Main,
   InputMaterial,
   Title,
+  LogoImg
 } from "./styled";
 
 const SignUp = () => {
@@ -75,6 +78,8 @@ const SignUp = () => {
 
   return (
     <Main>
+      <Header back/>
+      <LogoImg src={logo}/>
       <Title>Cadastrar</Title>
       <Form onSubmit={onSubmitForm}>
         <InputMaterial

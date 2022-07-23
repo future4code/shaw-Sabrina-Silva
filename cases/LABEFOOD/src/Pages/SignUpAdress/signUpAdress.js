@@ -6,6 +6,8 @@ import { Form, InputMaterial, Title, Main, ButtonStyled } from "./styled";
 import { goToFeed } from "../../Router/coordinator";
 import { useNavigate } from "react-router-dom";
 import useProtectedPage from "../../Hooks/useProtectedPage";
+import Header from "../../Components/Header/Header"
+
 
 const SignUpAdress = () => {
   useProtectedPage()
@@ -46,7 +48,8 @@ const SignUpAdress = () => {
     return( 
 
      <Main>
-      <Title>Cadastrar</Title>
+      <Header back/>
+      <Title>Meu Endereço</Title>
       <Form onSubmit={onSubmitForm}>
         <InputMaterial
           placeholder={"Rua/ Av."}
@@ -131,7 +134,7 @@ const SignUpAdress = () => {
             shrink: true,
           }}
         />
-        <ButtonStyled type="submit">Entrar</ButtonStyled>
+        <ButtonStyled type="submit">Salvar</ButtonStyled>
         </Form>
     </Main>
         

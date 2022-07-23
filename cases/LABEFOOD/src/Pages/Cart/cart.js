@@ -34,10 +34,10 @@ const Cart = () => {
   useProtectedPage();
 
   const [payment, setPayment] = useState([]);
-   const [paymentMethod, setPaymentMethod] = ({
-       'money': false,
-       'creditcard': false
-  })
+  //  const [paymentMethod, setPaymentMethod] = ({
+  //      'money': false,
+  //      'creditcard': false
+  // })
 
   const profile = useRequestData({}, `${BASE_URL}/profile`);
 
@@ -51,17 +51,17 @@ const Cart = () => {
       description: "Pão, carne, queijo, alface, presunto, bacon e molho",
     },
   ];
-  const onChangePayment = (event)=> {
-      const newCheck = {...paymentMethod}
-      newCheck[event.target.name] = event.target.checked
 
-      const result = Object.keys(newCheck).filter((pay)=>{
-          if(newCheck[pay]){
-              return [pay, ...payment]
-          }
-      })
-  }
-  console.log(profile[0].user);
+  // const onChangePayment = (event)=> {
+  //     const newCheck = {...paymentMethod}
+  //     newCheck[event.target.name] = event.target.checked
+
+  //     const result = Object.keys(newCheck).filter((pay)=>{
+  //         if(newCheck[pay]){
+  //             return [pay, ...payment]
+  //         }
+  //     })
+  // }
 
   return (
     <ContainerCart>

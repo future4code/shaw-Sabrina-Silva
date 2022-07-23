@@ -115,7 +115,7 @@ const Feed = () => {
 
   return (
     <ContainerFeed>
-      <Header title={"Ifuture"} />
+      <Header title={"IFuture"} />
       <BoxInputSearch>
         <InputSearch
           placeholder="Restaurante"

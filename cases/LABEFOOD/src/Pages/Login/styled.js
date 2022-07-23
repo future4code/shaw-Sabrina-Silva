@@ -13,8 +13,13 @@ display: flex;
 flex-direction: column;
 align-items: center;
 p{
-font-size: 1rem;
+font-size: 1.1rem;
+
 }
+`
+
+export const LogoImg = styled.img`
+margin: 20% 0 10% 0;
 `
 
 export const Form = styled.form`
@@ -36,5 +41,20 @@ export const ButtonStyled = styled(Button)`
     color: #000;
     background-color: #E8222E;
     width: 100%;
+    font-weight: 700;
+}
+`
+
+export const ButtonSingUp = styled.button`
+background-color: transparent;
+border: none;
+transition: 0.3s;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+&:houver{
+    font-size: 1rem;
+    color: red;
+    background-color: red;
 }
 `

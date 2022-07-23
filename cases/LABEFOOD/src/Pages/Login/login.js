@@ -1,11 +1,12 @@
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "../../Constants/url";
-import { goToFeed } from "../../Router/coordinator";
-import { ButtonStyled, DivPassword, Form, Main, InputMaterial } from "./styled";
+import logo from "../../Assets/ImgLogo/logo-future-eats-invert.png"
+import { goToFeed, goToSignUp } from "../../Router/coordinator";
+import { ButtonStyled, DivPassword, Form, Main, InputMaterial, ButtonSingUp, LogoImg } from "./styled";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,11 +17,12 @@ const Login = () => {
   const [checkErrEmail, setCheckErrEmail] = useState(false);
   const [checkErrPass, setCheckErrPass] = useState(false);
 
-  const navigate = useNavigate();
-
+  
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const navigate = useNavigate();
 
   const onSubmitLogin = (event) => {
     event.preventDefault();
@@ -44,7 +46,6 @@ const Login = () => {
         setCheckErrPass(false);
         setCheckErrEmail(false);
         localStorage.setItem("token", res.data.token);
-        alert(`Bem vindo(a) ${res.data.user.name}`);
         goToFeed(navigate);
       })
       .catch((err) => {
@@ -60,7 +61,8 @@ const Login = () => {
 
   return (
     <Main>
-      <p>Entrar</p>
+      <LogoImg src={logo}/>
+      <h3>Entrar</h3>
       <Form onSubmit={onSubmitLogin}>
         <InputMaterial
           error={checkErrEmail}
@@ -75,32 +77,45 @@ const Login = () => {
           required
         />
         <DivPassword>
-          <InputMaterial
+          <FormControl variant="outlined" required fullWidth>
+          <InputLabel shrink htmlFor="outlined-adornment-password">
+            Senha
+          </InputLabel>
+          <OutlinedInput
             error={checkErrPass}
             helperText={checkErrPass ? errPass : ""}
-            id="outlined-basic2"
-            label="Password"
-            type={showPassword ? "password" : "text"}
-            variant="outlined"
-            placeholder={"Minímo 6 caracteres"}
+            id="outlined-adornment-password1"
+            type={showPassword ? "text" : "password"}
+            name={"password"}
+            label={"Senha"}
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            inputProps={{
-              minLength: 6,
-              title: "A senha deve conter no minímo 6 caracteres",
-            }}
             required
+            onChange={(event) => setPassword(event.target.value)}
+            fullWidth
+            placeholder={"Mínimo 6 caracteres"}
+            inputProps={{
+              pattern: "^.{6,}$",
+              title: "Senha deve possuir no mínimo 6 caracteres",
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}                 
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            notched
+            labelWidth={59}
           />
-          <IconButton
-            aria-label="toggle password visibility"
-            onClick={handleClickShowPassword}
-            edge="end"
-          >
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
+       </FormControl>
         </DivPassword>
         <ButtonStyled type="submit">Entrar</ButtonStyled>
       </Form>
+      <p>Não possui cadastro? </p><ButtonSingUp onClick={() =>goToSignUp(navigate)}>Clique aqui</ButtonSingUp>
     </Main>
   );
 };

@@ -14,6 +14,7 @@ import Header from "../../Components/Header/Header";
 import CardProduct from "../../Components/CardProduct/CardProduct";
 import Loading from "../../Components/Loading/Loading";
 import useProtectedPage from "../../Hooks/useProtectedPage";
+import { useGlobal } from "../../Context/Global/GlobalStateContext";
 
 const Restaurant = () => {
   useProtectedPage()
@@ -21,6 +22,8 @@ const Restaurant = () => {
   const [restaurant, setRestaurant] = useState({});
   const [categories, setCategories] = useState([]);
   const { id } = useParams();
+
+  const {states, requests, setters} = useGlobal()
 
   const getRestaurant = async () => {
     await axios
@@ -35,16 +38,6 @@ const Restaurant = () => {
       .catch((err) => {
         console.log(err.response);
       });
-  };
-
-  const showProducts = (restaurant) => {
-    if (restaurant === undefined) {
-      return <Loading />;
-    } else {
-      restaurant.products.map((product) => {
-        return <CardProduct key={product.id} product={product} />;
-      });
-    }
   };
 
   useEffect(() => {
@@ -80,7 +73,10 @@ const Restaurant = () => {
                     return product.category === category
                   })
                   .map((product) => {
-                    return <CardProduct key={product.id} product={product} />;
+                    return <CardProduct 
+                    key={product.id} 
+                    product={product} 
+                    restaurant={restaurant}/>;
                   })
                   }
                 </SectionProductByCategory>

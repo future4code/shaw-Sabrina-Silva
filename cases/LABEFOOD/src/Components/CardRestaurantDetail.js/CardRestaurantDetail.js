@@ -1,6 +1,4 @@
 import { CardActionArea } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
 import {
   BoxInform,
   Inform,
@@ -9,12 +7,9 @@ import {
   NameRestaurant,
 } from "./styled";
 
-const CardRestaurantDetail = ({ restaurant }) => {
-  const navigate = useNavigate()
-  console.log(restaurant.name);
+const CardRestaurantDetail = ({ restaurant }) => {  
   return (
     <>
-
     <ContainerCardRestaurant>
       <CardActionArea>
         <ImageRestaurant
@@ -28,7 +23,7 @@ const CardRestaurantDetail = ({ restaurant }) => {
       <NameRestaurant>{restaurant.name}</NameRestaurant>
       <Inform>{restaurant.category}</Inform>
       <BoxInform>
-        <Inform>{restaurant.deliveryTime} min</Inform>
+        <Inform>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10}min</Inform>
         <Inform>Frete {restaurant.shipping},00</Inform>
       </BoxInform>
       <Inform>{restaurant.address}</Inform>

@@ -85,7 +85,7 @@ const Login = () => {
             error={checkErrPass}
             helperText={checkErrPass ? errPass : ""}
             id="outlined-adornment-password1"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? "password" : "text"}
             name={"password"}
             label={"Senha"}
             value={password}
@@ -104,7 +104,7 @@ const Login = () => {
                   onClick={handleClickShowPassword}                 
                   edge="end"
                 >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }

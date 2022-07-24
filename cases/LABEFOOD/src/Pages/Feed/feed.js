@@ -11,9 +11,11 @@ import {
   Menu,
   MenuItem,
 } from "./styled";
+import Loading from "../../Components/Loading/Loading"
 import { InputAdornment } from "@mui/material";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import { Search } from "@mui/icons-material";
 
 const Feed = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -126,12 +128,15 @@ const Feed = () => {
             startAdornment: (
               <InputAdornment position="start">
                 {/* <Icon color="disabled" /> */}
+                <Search color="disabled"/> 
               </InputAdornment>
             ),
           }}
         />
       </BoxInputSearch>
-      <Menu>
+      {restaurants ? 
+      <div>
+        <Menu>
         <MenuItem select={false} onClick={() => setValueCategory("")}>
           Todos
         </MenuItem>
@@ -143,7 +148,9 @@ const Feed = () => {
           );
         })}
       </Menu>
-      <CardsRestaurant>{filterRestaurantName}</CardsRestaurant>
+      <CardsRestaurant>{filterRestaurantName}</CardsRestaurant> 
+      </div>
+      : <Loading/>}
       <Footer page='home' />
     </ContainerFeed>
   );

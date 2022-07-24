@@ -4,7 +4,19 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { BoxModal, ButtonAddToCart, SelectQuantity, TitleModal } from './styled';
 
- const ModalSelectQuantity = ({open, setOpen}) => {
+ const ModalSelectQuantity = ({open, setOpen, choiceQuantity}) => {
+  const [quantity, setQuantity] = React.useState()
+
+  // const choiceQuantity = (quantity) => {
+  //   console.log(quantity)
+  //   if(quantity === 0){
+  //       setShowModal(false)
+  //       removeItemToCart(product.id)
+  //   }else{
+  //   }
+    
+  // };
+
 
   return (
       <Modal
@@ -19,7 +31,8 @@ import { BoxModal, ButtonAddToCart, SelectQuantity, TitleModal } from './styled'
             <TitleModal>
                 Selecione a quantidade desejada
             </TitleModal>
-            <SelectQuantity>
+            <SelectQuantity onChange={(event)=>setQuantity(event.target.value) }>
+                <option>0</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -31,7 +44,7 @@ import { BoxModal, ButtonAddToCart, SelectQuantity, TitleModal } from './styled'
                 <option>9</option>
                 <option>10</option>
             </SelectQuantity>
-            <ButtonAddToCart>
+            <ButtonAddToCart onClick={()=> choiceQuantity(Number(quantity))}>
             Adicionar ao carrinho
             </ButtonAddToCart>
            

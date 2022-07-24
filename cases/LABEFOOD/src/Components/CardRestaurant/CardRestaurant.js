@@ -25,7 +25,7 @@ const CardRestaurant = ({ restaurant }) => {
       </CardActionArea>
       <NameRestaurant>{restaurant.name}</NameRestaurant>
       <BoxInformTimePrice>
-        <InformTimePrice>{restaurant.deliveryTime} min</InformTimePrice>
+        <InformTimePrice>{restaurant.deliveryTime} - {restaurant.deliveryTime + 10}min</InformTimePrice>
         <InformTimePrice>Frete {restaurant.shipping},00</InformTimePrice>
       </BoxInformTimePrice>
     </ContainerCardRestaurant>

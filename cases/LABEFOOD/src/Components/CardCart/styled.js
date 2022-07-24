@@ -12,6 +12,7 @@ width: 6rem;
 height: 7rem;
 border-radius: 9px 0 0 9px  ;
 `
+
 export const QuantityProduct = styled.div`
 display: flex;
 justify-content: center;
@@ -19,10 +20,13 @@ align-items: center;
 width: 2.063rem;
 height: 2.063rem;
 border: solid 1px #E8222E;
+border-radius: 0 8px 0 8px ;
+color: #E8222E;
 `
 
 export const  BoxNameQuantity = styled.div`
-
+display: flex;
+justify-content: space-between;
 `
 
 export const NameProduct = styled.h3`
@@ -33,8 +37,7 @@ export const NameProduct = styled.h3`
   line-height: normal;
   letter-spacing: -0.39px;  
   color:#E8222E;
-  margin-bottom: 0.25rem;
-  margin-left: 4.8px;
+  margin: 16px 16px 5px 4.8px;
 ` 
 
 
@@ -42,7 +45,7 @@ export const BoxInform = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 1rem 0 0 1rem;
+  padding: 0 0 0 1rem;
   flex-grow: 1;
 `
 
@@ -72,8 +75,6 @@ export const InformPrice = styled.p`
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.39px;  
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 0.25rem;
   flex-grow: 1;
 `

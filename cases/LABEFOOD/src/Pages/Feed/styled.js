@@ -34,7 +34,7 @@ export const Menu = styled.nav`
 export const MenuItem = styled.button`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1rem;
-  font-weight: normal;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;

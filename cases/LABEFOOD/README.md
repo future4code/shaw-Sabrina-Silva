@@ -6,7 +6,7 @@
 
 <br>
 
-[Deploy da aplicação]()
+[Deploy da aplicação](ifuture-sShow.surge.sh)
 
 [Documentação da API](https://documenter.getpostman.com/view/7549981/SWTEdGtT?version=latest)
 
@@ -36,11 +36,9 @@
 3. Redux-Thunk: Integração do redux com requisições assíncronas.
 4. Autenticação
 5. Estilização Avançada com CSS
-6. Uso de bibliotecas de UI (MaterialUI)
-7. Aplicações com múltiplas rotas utilizando React Router
-8. Formulários com Validação
-9. Teste unitário de lógica e de componentes
-10. Responsividade e adaptação de aplicação web para front.
+6. Aplicações com múltiplas rotas utilizando React Router
+7. Formulários com Validação
+8. Teste unitário de lógica e de componentes
 
 <br>
 
@@ -49,9 +47,5 @@
   - [material-ui](https://mui.com/pt/)
   - [react-router-dom](https://v5.reactrouter.com/)
   - [styled-components](https://styled-components.com/)
-   Link Surge: 
-  - Acesse Rappi4 [clicando aqui.](https://ragged-yard.surge.sh/)
 
 <br>  
-
-## 🔗

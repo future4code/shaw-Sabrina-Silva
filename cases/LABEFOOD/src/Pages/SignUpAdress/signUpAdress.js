@@ -37,7 +37,6 @@ const SignUpAdress = () => {
 
         .then((res)=>{
             localStorage.setItem('token', res.data.token)
-            alert(`Bem vindo(a) ${res.data.user.name}`);
             goToFeed(navigate)
         })
         .catch((err)=> {

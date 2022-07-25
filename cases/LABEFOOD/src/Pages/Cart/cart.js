@@ -23,28 +23,29 @@ import {
   PaymentTitle,
   MainCart,
   NameRestaurant,
+  Button,
 } from "./styled";
 
 const Cart = () => {
   useProtectedPage();
 
   const { states, setters } = useGlobal();
-  const { cart, restaurant, order} = states;
-  const {setOrder} = setters
+  const { cart, restaurant, order } = states;
+  const { setOrder, setCart } = setters;
 
   const [payment, setPayment] = useState([]);
   const [paymentMethod] = useState(["money", "creditcard"]);
   const [fullPrice, setFullPrice] = useState();
 
- //--- Requisição para pegar profile ---
+  //--- Requisição para pegar profile ---
   const profile = useRequestData({}, `${BASE_URL}/profile`);
 
-// --- Mudando o estado de pagamento ---
+  // --- Mudando o estado de pagamento ---
   const onChangePayment = (event) => {
     setPayment(event.target.value);
   };
 
-// --- Calculando o preço total da compra ---
+  // --- Calculando o preço total da compra ---
   const totalPrice = () => {
     let totalPrice = 0;
     for (const product of cart) {
@@ -55,39 +56,38 @@ const Cart = () => {
     setFullPrice(allTotalPrice);
   };
 
-// --- Requisição para fazer pedido ---
+  // --- Requisição para fazer pedido ---
   const placeOrder = async () => {
     const body = {
-      products: cart.map((product)=> {
-        return({
+      products: cart.map((product) => {
+        return {
           id: product.id,
-          quantity: product.quantity
-        })
+          quantity: product.quantity,
+        };
       }),
-      paymentMethod: payment
-    }
-    console.log(body);
-    await axios.post(`${BASE_URL}/restaurants/${restaurant.id}/order`, body, {
-      headers: {
-        auth: window.localStorage.getItem('token')
-      }
-    })
-    .then((res)=> {
-      setOrder(res.data)
-    })
-    .catch((err)=> {
-      console.log(err.response)
-      alert(err.data.message)
-    })
+      paymentMethod: payment,
+    };
 
-  }
+    await axios
+      .post(`${BASE_URL}/restaurants/${restaurant.id}/order`, body, {
+        headers: {
+          auth: window.localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setOrder(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
 
-// --- onSubmit do formulário ---
+  // --- onSubmit do formulário ---
 
   const onSubmitPlaceOrder = (event) => {
-    event.preventDefault()
-    placeOrder()
-  }
+    event.preventDefault();
+    placeOrder();
+  };
 
   useEffect(() => {
     totalPrice();
@@ -143,7 +143,7 @@ const Cart = () => {
                   {new Intl.NumberFormat("pt-BR", {
                     styled: "currency",
                     currency: "BRL",
-                  }).format(fullPrice)},00
+                  }).format(Number(fullPrice))}
                 </Total>
               ) : (
                 <Total>R$ 00,00</Total>
@@ -171,9 +171,13 @@ const Cart = () => {
                 </div>
               );
             })}
-            <ButtonCart type="submit" >Confirmar</ButtonCart>
+            {!order ? (
+              <ButtonCart type="submit">Confirmar</ButtonCart>
+            ) : (
+              <Button type="submit">Pedido em andamento</Button>
+            )}
           </Form>
-        </MainCart>  
+        </MainCart>
       </CartConfig>
       <Footer page="cart" />
     </ContainerCart>

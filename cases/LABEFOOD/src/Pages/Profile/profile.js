@@ -8,7 +8,6 @@ import {
   ContainerProfile,
   InfosProfile,
   ProfileAdrees,
-  purchasesHistoric,
   AddressTitle,
   EditButton,
   Address,
@@ -21,7 +20,6 @@ const Profile = () => {
 
   const profile = useRequestData({}, `${BASE_URL}/profile`);
 
-  console.log(profile[0].user);
   return (
     <div>
       <Header title={"Perfil"} back={true} />

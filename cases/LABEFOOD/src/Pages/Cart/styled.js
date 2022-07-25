@@ -145,4 +145,19 @@ export const ButtonCart = styled.button`
   font-weight: 500;
   font-size: 20px;
 `
-
+export const Button = styled.button`
+  width: 90%;
+  height: 8vh;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background-color: #B5B5B5;
+  color: #fff;
+  position: fixed;
+  bottom: 10vh;
+  left: 5%;
+  font-weight: 500;
+  font-size: 20px;
+`

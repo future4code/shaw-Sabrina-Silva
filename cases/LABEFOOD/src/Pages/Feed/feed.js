@@ -26,8 +26,8 @@ const Feed = () => {
   const [valueCategory, setValueCategory] = useState("");
 
   const { states, setters } = useGlobal();
-  const { cart, restaurant, order, activeOrder } = states;
-  const { setOrder, setActiveOrder } = setters;
+  const { order } = states;
+  const { setOrder } = setters;
 
   useProtectedPage();
 
@@ -90,15 +90,22 @@ const Feed = () => {
 
   const filterRestaurantCategory = (restaurants) => {
     const categorys = [];
+
     restaurants &&
       restaurants.map((res) => {
         categorys.push(res.category);
       });
+
     const takeOutRepeatCategory = [...new Set(categorys)];
+
     const changeObjectArray = [];
+
     takeOutRepeatCategory.map((category) => {
+
       const insertObject = { category, select: false };
+
       changeObjectArray.push(insertObject);
+
       return insertObject;
     });
     setCategoryRestaurant(changeObjectArray);
@@ -143,8 +150,8 @@ const Feed = () => {
       </BoxInputSearch>
       {restaurants ? (
         <div>
-          <Menu>
-            <MenuItem select={false} onClick={() => setValueCategory("")}>
+          <Menu> 
+             <MenuItem select={false} onClick={() => setValueCategory("")}>
               Todos
             </MenuItem>
             {categoryRestaurant.map((category) => {
@@ -153,7 +160,7 @@ const Feed = () => {
                   select={category.select}
                   onClick={() => changeColorAndCategory(category.category)}
                 >
-                  {category.category}
+                 {category.category}
                 </MenuItem>
               );
             })}
@@ -163,7 +170,7 @@ const Feed = () => {
       ) : (
         <Loading />
       )}
-      {!order ? <></> : <Order activeOrder={order} /> }
+      {!order ? <></> : <Order activeOrder={order}/> }
       <Footer page="home" />
     </ContainerFeed>
   );

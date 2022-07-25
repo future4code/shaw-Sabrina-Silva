@@ -70,9 +70,10 @@ const SignUp = () => {
   const onSubmitForm = (event) => {
     event.preventDefault();
     if (form.password === confirmPassword) {
+      setCheckErrPass(false)
       signUpUser(form, navigate);
     } else {
-      setCheckErrPass(false);
+      setCheckErrPass(true);
     }
   };
 
@@ -133,6 +134,7 @@ const SignUp = () => {
             Senha
           </InputLabel>
           <OutlinedInput
+            error={checkErrPass}
             id="outlined-adornment-password1"
             type={showPassword ? "text" : "password"}
             name={"password"}
@@ -151,7 +153,6 @@ const SignUp = () => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
-                  // onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
                   {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -168,7 +169,7 @@ const SignUp = () => {
           </InputLabel>
           <OutlinedInput
             error={checkErrPass}
-            helperText={checkErrPass ? "" : "Deve ser a mesma da anterior"}
+            helperText={!checkErrPass ? "" : "Deve ser a mesma da anterior"}
             id="outlined-adornment-password2"
             type={showCheckPassword ? "text" : "password"}
             name={"confirmPassword"}
@@ -186,7 +187,6 @@ const SignUp = () => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickCheckShowPassword}
-                  // onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
                   {showCheckPassword ? <Visibility /> : <VisibilityOff />}

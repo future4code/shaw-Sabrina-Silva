@@ -6,7 +6,7 @@
 
 <br>
 
-[Deploy da aplicação](ifuture-sShow.surge.sh)
+[Surge](http://iFuture.shawS.surge.sh)
 
 [Documentação da API](https://documenter.getpostman.com/view/7549981/SWTEdGtT?version=latest)
 

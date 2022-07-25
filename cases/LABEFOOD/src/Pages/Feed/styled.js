@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { InputAdornment, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 export const ContainerFeed = styled.div``;
 
 export const CardsRestaurant = styled.div`
   margin-top: 0.8rem;
   padding: 0 1rem;
+  padding-bottom: 11rem;
 `;
 
 export const BoxInputSearch = styled.div`

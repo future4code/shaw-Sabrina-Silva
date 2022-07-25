@@ -5,6 +5,9 @@ import useProtectedPage from "../../Hooks/useProtectedPage";
 import { useRequestData } from "../../Hooks/useRequestData";
 import BASE_URL from "../../Constants/url";
 import axios from "axios";
+import { Radio } from "@mui/material";
+import CardCart from "../../Components/CardCart/CardCart";
+import { useGlobal } from "../../Context/Global/GlobalStateContext";
 import {
   ContainerCart,
   ButtonCart,
@@ -21,9 +24,6 @@ import {
   MainCart,
   NameRestaurant,
 } from "./styled";
-import { Radio } from "@mui/material";
-import CardCart from "../../Components/CardCart/CardCart";
-import { useGlobal } from "../../Context/Global/GlobalStateContext";
 
 const Cart = () => {
   useProtectedPage();
@@ -36,12 +36,15 @@ const Cart = () => {
   const [paymentMethod] = useState(["money", "creditcard"]);
   const [fullPrice, setFullPrice] = useState();
 
+ //--- Requisição para pegar profile ---
   const profile = useRequestData({}, `${BASE_URL}/profile`);
 
+// --- Mudando o estado de pagamento ---
   const onChangePayment = (event) => {
     setPayment(event.target.value);
   };
 
+// --- Calculando o preço total da compra ---
   const totalPrice = () => {
     let totalPrice = 0;
     for (const product of cart) {
@@ -52,6 +55,7 @@ const Cart = () => {
     setFullPrice(allTotalPrice);
   };
 
+// --- Requisição para fazer pedido ---
   const placeOrder = async () => {
     const body = {
       products: cart.map((product)=> {
@@ -69,7 +73,7 @@ const Cart = () => {
       }
     })
     .then((res)=> {
-      console.log(res.data);
+      setOrder(res.data)
     })
     .catch((err)=> {
       console.log(err.response)
@@ -77,6 +81,8 @@ const Cart = () => {
     })
 
   }
+
+// --- onSubmit do formulário ---
 
   const onSubmitPlaceOrder = (event) => {
     event.preventDefault()
@@ -103,7 +109,6 @@ const Cart = () => {
                   <NameRestaurant>{restaurant.name}</NameRestaurant>
                   <p>{restaurant.address}</p>
                   <p>
-                    {" "}
                     {restaurant.deliveryTime} - {restaurant.deliveryTime + 10}
                     min
                   </p>
@@ -168,8 +173,7 @@ const Cart = () => {
             })}
             <ButtonCart type="submit" >Confirmar</ButtonCart>
           </Form>
-        </MainCart>
-       
+        </MainCart>  
       </CartConfig>
       <Footer page="cart" />
     </ContainerCart>

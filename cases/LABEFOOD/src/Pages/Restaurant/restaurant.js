@@ -23,8 +23,6 @@ const Restaurant = () => {
   const [categories, setCategories] = useState([]);
   const { id } = useParams();
 
-  const {states, requests, setters} = useGlobal()
-
   const getRestaurant = async () => {
     await axios
       .get(`${BASE_URL}/restaurants/${id}`, {

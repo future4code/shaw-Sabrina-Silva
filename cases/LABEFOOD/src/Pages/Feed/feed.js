@@ -11,17 +11,23 @@ import {
   Menu,
   MenuItem,
 } from "./styled";
-import Loading from "../../Components/Loading/Loading"
+import Loading from "../../Components/Loading/Loading";
 import { InputAdornment } from "@mui/material";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { Search } from "@mui/icons-material";
+import { useGlobal } from "../../Context/Global/GlobalStateContext";
+import Order from "../../Components/Order/Order";
 
 const Feed = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [inputText, setInputText] = useState("");
   const [categoryRestaurant, setCategoryRestaurant] = useState([]);
   const [valueCategory, setValueCategory] = useState("");
+
+  const { states, setters } = useGlobal();
+  const { cart, restaurant, order, activeOrder } = states;
+  const { setOrder, setActiveOrder } = setters;
 
   useProtectedPage();
 
@@ -41,8 +47,28 @@ const Feed = () => {
       });
   };
 
+  const getActiveOrder = async () => {
+    await axios
+      .get(`${BASE_URL}/active-order`, {
+        headers: {
+          auth: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setOrder(res.data.order);
+        const expiresAt = res.data.order.expiresAt
+        setTimeout(()=> {
+        getActiveOrder()
+      }, expiresAt - new Date().getTime())
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getRestaurants();
+    getActiveOrder();
   }, []);
 
   const filterRestaurantName = restaurants
@@ -69,51 +95,33 @@ const Feed = () => {
         categorys.push(res.category);
       });
     const takeOutRepeatCategory = [...new Set(categorys)];
-    const changeObjectArray = []
-    takeOutRepeatCategory.map((category)=>{
-      const insertObject = {category, select: false}
-      changeObjectArray.push(insertObject)
-      return insertObject
-    })
+    const changeObjectArray = [];
+    takeOutRepeatCategory.map((category) => {
+      const insertObject = { category, select: false };
+      changeObjectArray.push(insertObject);
+      return insertObject;
+    });
     setCategoryRestaurant(changeObjectArray);
   };
 
-  const changeColorAndCategory= (category) =>{
+  const changeColorAndCategory = (category) => {
+    setValueCategory(category);
 
-    setValueCategory(category)
-
-    const result = categoryRestaurant.map((cat)=>{
-      if(cat.category === category){
-       return{
-          ...cat, select: true
-        }
-      }else{
-        return{
-          ...cat, select: false
-        }
+    const result = categoryRestaurant.map((cat) => {
+      if (cat.category === category) {
+        return {
+          ...cat,
+          select: true,
+        };
+      } else {
+        return {
+          ...cat,
+          select: false,
+        };
       }
-     
-    })
-    setCategoryRestaurant(result)
-  }
-
-  // const changeColorAndCategoryAll = (category) =>{
-  //   setValueCategory("")
-
-  //   const result = categoryRestaurant.map((cat)=>{
-  //     if(cat.category === category){
-  //      return{
-  //         ...cat, select: true
-  //       }
-  //     }else{
-  //       return{
-  //         ...cat, select: false
-  //       }
-  //     }
-     
-  //   })
-  //   setCategoryRestaurant(result)
-  // }
+    });
+    setCategoryRestaurant(result);
+  };
 
   return (
     <ContainerFeed>
@@ -127,31 +135,36 @@ const Feed = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                {/* <Icon color="disabled" /> */}
-                <Search color="disabled"/> 
+                <Search color="disabled" />
               </InputAdornment>
             ),
           }}
         />
       </BoxInputSearch>
-      {restaurants ? 
-      <div>
-        <Menu>
-        <MenuItem select={false} onClick={() => setValueCategory("")}>
-          Todos
-        </MenuItem>
-        {categoryRestaurant.map((category) => {
-          return (
-            <MenuItem select={category.select} onClick={() => changeColorAndCategory(category.category)}>
-              {category.category}
+      {restaurants ? (
+        <div>
+          <Menu>
+            <MenuItem select={false} onClick={() => setValueCategory("")}>
+              Todos
             </MenuItem>
-          );
-        })}
-      </Menu>
-      <CardsRestaurant>{filterRestaurantName}</CardsRestaurant> 
-      </div>
-      : <Loading/>}
-      <Footer page='home' />
+            {categoryRestaurant.map((category) => {
+              return (
+                <MenuItem
+                  select={category.select}
+                  onClick={() => changeColorAndCategory(category.category)}
+                >
+                  {category.category}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+          <CardsRestaurant>{filterRestaurantName}</CardsRestaurant>
+        </div>
+      ) : (
+        <Loading />
+      )}
+      {!order ? <></> : <Order activeOrder={order} /> }
+      <Footer page="home" />
     </ContainerFeed>
   );
 };

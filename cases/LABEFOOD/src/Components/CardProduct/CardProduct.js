@@ -22,11 +22,13 @@ const CardProduct = ({ product, restaurant }) => {
   const { addItemToCart, removeItemToCart } = requests;
   const { cart } = states
 
+//--- Escolhendo a quantidade do produdo --- 
   const choiceQuantity = (quantity) => {
     addItemToCart(product, quantity, restaurant);
     setShowModal(false)
   };
 
+//--- Verificando de o produto que está no carrinho ---
   const productInCart = cart.find((productInCart)=> (productInCart.id === product.id))
 
   return (
@@ -39,7 +41,7 @@ const CardProduct = ({ product, restaurant }) => {
         </BoxNameQuantity>
         <InformDescription>{product.description}</InformDescription>
         <BoxInformButtonPrice>
-          <InformPrice>R$ {product.price}</InformPrice>
+          <InformPrice>R$ {product.price.toFixed(2)}</InformPrice>
           {
           productInCart 
           ? 

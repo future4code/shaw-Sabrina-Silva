@@ -1,3 +1,5 @@
+import { FadeInLeft } from "animate-css-styled-components";
+import Animate from "animate-css-styled-components/lib/Animate";
 import * as React from "react";
 import {
   TableContainer,
@@ -21,6 +23,11 @@ const TableInfos = ({ user }) => {
 
   return (
     <TableContainer>
+      {user ? 
+       <Animate 
+       Animation={[FadeInLeft]} 
+       duration="0.8s" 
+       delay="0.2s">
       <table>
         <Caption>Participantes</Caption>
         <thead>
@@ -29,6 +36,8 @@ const TableInfos = ({ user }) => {
         </thead>
         <tbody>{userTable}</tbody>
       </table>
+      </Animate> : <></>}
+    
     </TableContainer>
   );
 };

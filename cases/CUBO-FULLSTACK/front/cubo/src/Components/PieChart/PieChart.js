@@ -1,6 +1,7 @@
 import React from "react";
 import { ContainerPieChart } from "./styled";
-import { VictoryPie, VictoryScatter, VictoryLabel } from "victory";
+import { VictoryPie } from "victory";
+import { FadeInRight } from "animate-css-styled-components";
 
 const PieChartGraphic = ({name, user}) => {
 
@@ -10,32 +11,55 @@ const PieChartGraphic = ({name, user}) => {
       .toString(16)
       .padStart(6, "0"))
   }
-  console.log(user)
     
   const pieUsers = user.map( (user) => {
-    const name = `${user.first_name} - ${user.participation}%`; 
+    const name = `${user.first_name}-${user.participation}%`; 
     const dataPoint = {x:name, y:user.participation, label: name}
     return dataPoint
   })
 
   return (
     <ContainerPieChart>
+      {user ? <FadeInRight>
       <VictoryPie
         data={pieUsers}
         width={500}
-        labelPlacement={"vertical"}
-        colorScale={Array.from({length: pieUsers.length},()=> color())}
+        height={500}
+        labelPlacement={"parallel"}
+        labelRadius={({ innerRadius }) => innerRadius + 5 }
+        // colorScale={Array.from({length: pieUsers.length},()=> color())}
+        colorScale={"qualitative"}
+        innerRadius={60}
         style={{
           data: {
             fillOpacity: 0.9,
           },
           labels: {
-            fontSize: 16,
-            fill: "#663399",
+            fontSize: 14,
+            fill: "#fff",
           },
         }}
       />
-      {/* {userPierChart} */}
+      </FadeInRight> : <></> }
+      {/* <BounceIn>
+      <VictoryPie
+        data={pieUsers}
+        width={500}
+        labelPlacement={"parallel"}
+        labelRadius={({ innerRadius }) => innerRadius + 5 }
+        colorScale={Array.from({length: pieUsers.length},()=> color())}
+        innerRadius={50}
+        style={{
+          data: {
+            fillOpacity: 0.9,
+          },
+          labels: {
+            fontSize: 14,
+            fill: "#fff",
+          },
+        }}
+      />
+      </BounceIn> */}
     </ContainerPieChart>
   );
 };

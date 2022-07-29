@@ -1,3 +1,4 @@
+import { Pulse } from "animate-css-styled-components";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BASE_URL from "../../Constants/url";
@@ -61,6 +62,7 @@ const InputsInfos = () => {
           required
           onChange={(event) => setParticipation(event.target.value)}
         />
+        
         <SendButton type="submit">Enviar</SendButton>
       </Form>
     </ContainerInput>

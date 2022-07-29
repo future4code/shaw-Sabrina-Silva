@@ -31,7 +31,7 @@ const Home = () => {
 
   useEffect(() => {
     getUser()
-    }, []);
+    }, [user]);
 
   return (
     <ContainerHome>

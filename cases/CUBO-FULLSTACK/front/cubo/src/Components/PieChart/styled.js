@@ -6,5 +6,5 @@ align-items: center;
 justify-content: center;
 width: 50%;
 height: 50vh;
-margin: 3.5rem;
+margin: 5rem;
 `

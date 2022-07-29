@@ -11,13 +11,13 @@ class UserController {
         try{
             const { first_name, second_name, participation } = req.body
 
-            const token = await this.userBussines.insertUser({
+            const user = await this.userBussines.insertUser({
                 first_name, 
                 second_name, 
                 participation
             })
 
-            res.status(201).send({message:"User Createad",token})
+            res.status(201).send({message:"User Createad",user})
 
         }catch (error:any){
             res.send({ message: error.sqlMessage || error.message })
@@ -27,9 +27,7 @@ class UserController {
     getUsers = async (req: Request, res: Response)=>{
         try{
 
-            const token: string = req.headers.authorization as string
-
-            const result = await this.userBussines.selectAllUser(token)
+            const result = await this.userBussines.selectAllUser()
 
             res.status(201).send({ result })
 

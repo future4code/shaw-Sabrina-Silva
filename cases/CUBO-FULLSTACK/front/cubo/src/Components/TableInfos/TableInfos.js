@@ -1,68 +1,35 @@
-import * as React from 'react';
-import { TableContainer, DescripitionTh, NameTd, ParticipationTd, Caption } from './styled';
+import * as React from "react";
+import {
+  TableContainer,
+  DescripitionTh,
+  NameTd,
+  ParticipationTd,
+  Caption,
+} from "./styled";
 
-const rows = [
-    {
-        name:'Frozen yoghurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0
-    },
-    {
-        name:'Ice cream sandwich',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0
-    },
-    {
-        name:'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 24,
-        protein: 6.0
-    }
-];
+const TableInfos = ({ user }) => {
+  const userTable = user.map((user) => {
+    return (
+      <tr>
+        <NameTd>
+          {user.first_name} {user.second_name}
+        </NameTd>
+        <ParticipationTd>{user.participation}%</ParticipationTd>
+      </tr>
+    );
+  });
 
-const TableInfos = () => {
   return (
     <TableContainer>
-    <table>
+      <table>
         <Caption>Participantes</Caption>
-      <thead>
-        <DescripitionTh>Nome</DescripitionTh>
-        <DescripitionTh>Participação</DescripitionTh>
-      </thead>
-      <tbody>
-        
-        <tr>
-        <NameTd>Luana</NameTd>
-        <ParticipationTd>50</ParticipationTd>
-        </tr>
-      </tbody>
-      <tr>
-        <NameTd>Maria</NameTd>
-        <ParticipationTd>50</ParticipationTd>
-        </tr>
-        <tr>
-        <NameTd>Camila</NameTd>
-        <ParticipationTd>50</ParticipationTd>
-        </tr>
-        <tr>
-        <NameTd>João</NameTd>
-        <ParticipationTd>50</ParticipationTd>
-        </tr>
-        <tr>
-        <NameTd>Pedro</NameTd>
-        <ParticipationTd>20</ParticipationTd>
-        </tr>
-        <tr>
-        <NameTd>Lilian</NameTd>
-        <ParticipationTd>20</ParticipationTd>
-        </tr>
-    </table>
+        <thead>
+          <DescripitionTh>Nome</DescripitionTh>
+          <DescripitionTh>Participação</DescripitionTh>
+        </thead>
+        <tbody>{userTable}</tbody>
+      </table>
     </TableContainer>
   );
-}
-export default TableInfos
+};
+export default TableInfos;

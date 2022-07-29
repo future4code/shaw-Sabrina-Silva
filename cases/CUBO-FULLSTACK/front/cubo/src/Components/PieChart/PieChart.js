@@ -2,17 +2,7 @@ import React from "react";
 import { ContainerPieChart } from "./styled";
 import { VictoryPie, VictoryScatter, VictoryLabel } from "victory";
 
-const PieChartGraphic = () => {
-  
-  const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 },
-    { quarter: 5, earnings: 18560 },
-    { quarter: 6, earnings: 11200 },
-    { quarter: 7, earnings: 12560 },
-  ];  
+const PieChartGraphic = ({name, user}) => {
 
   const color = ()=>{
    return ("#" +
@@ -20,25 +10,32 @@ const PieChartGraphic = () => {
       .toString(16)
       .padStart(6, "0"))
   }
+  console.log(user)
     
+  const pieUsers = user.map( (user) => {
+    const name = `${user.first_name} - ${user.participation}%`; 
+    const dataPoint = {x:name, y:user.participation, label: name}
+    return dataPoint
+  })
+
   return (
     <ContainerPieChart>
       <VictoryPie
-        data={data}
-        x="quarter"
-        y="earnings"
+        data={pieUsers}
         width={500}
-        colorScale={Array.from({length: data.length},()=> color())}
+        labelPlacement={"vertical"}
+        colorScale={Array.from({length: pieUsers.length},()=> color())}
         style={{
           data: {
             fillOpacity: 0.9,
           },
           labels: {
-            fontSize: 15,
-            fill: "black",
+            fontSize: 16,
+            fill: "#663399",
           },
         }}
       />
+      {/* {userPierChart} */}
     </ContainerPieChart>
   );
 };

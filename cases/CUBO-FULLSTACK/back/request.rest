@@ -1,17 +1,12 @@
-POST http://localhost:3003/user/create
+POST https://cubo-case-fullstack.herokuapp.com/user/create
 Content-Type: application/json
 
 {
-    "first_name": "Renatta",
-    "second_name": "Luz",
-    "participation": 25
+    "first_name": "Miguel",
+    "second_name": "Silva",
+    "participation": 19
 }
 
 ###
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc2NDViODM3LTVhNTYtNGUzZi1hZDIzLTRhYTgwZGY2MDQxZiIsImlhdCI6MTY1ODc3NTgxM30.owHOuczVRBTjNaT9DKCl5NyMaO14Q-WrgQKsgfSB0cs
-
-###
-
 GET https://cubo-case-fullstack.herokuapp.com/user/get-users
-Authorization: {{token}}

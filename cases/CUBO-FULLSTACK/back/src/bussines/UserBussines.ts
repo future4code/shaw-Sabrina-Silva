@@ -1,7 +1,6 @@
 import UserData from "../data/UserData";
 import { CustomError } from "../error/CustomError";
 import User from "../model/User";
-import { Authenticator } from "../services/Authenticator";
 import IdGenerator from "../services/Generator";
 import { InputUserDTO } from "../types/InputUserDTO";
 
@@ -9,7 +8,6 @@ class UserBussines{
     constructor(
         private userData = new UserData,
         private idGenerate = new IdGenerator,
-        private authenticator = new Authenticator
     ){}
 
     insertUser = async(user: InputUserDTO) => {
@@ -36,16 +34,9 @@ class UserBussines{
 
         await this.userData.insert(newUser)
 
-        const token = this.authenticator.generateToken({id})
-
-        return token
     }
 
-    selectAllUser = async(token:string) => {
-
-        if(!token ){
-            throw new CustomError(401,'Not authorized')
-        }
+    selectAllUser = async() => {
 
         const userList = await this.userData.selectUsers()
 

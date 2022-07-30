@@ -9,3 +9,4 @@ export const GlobalStyled = createGlobalStyle`
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     }
 `;
+

@@ -3,10 +3,17 @@ import styled from "styled-components";
 export const TableContainer = styled.div`
   width: 40%;
   height: auto;
-  margin: 5rem;
+  display: flex;
+  justify-content: center;
 
   tr:nth-child(even) {
     background-color: rgb(228, 228, 228);
+  }
+
+  @media(max-width: 800px) {
+    width: 70%;
+    margin-left: 4rem;
+
   }
 `;
 export const Caption = styled.caption`
@@ -15,6 +22,7 @@ export const Caption = styled.caption`
   padding: 20px;
   color: #4B0082;
   font-size: 20px;
+
 `;
 
 export const DescripitionTh = styled.th`
@@ -25,6 +33,7 @@ export const DescripitionTh = styled.th`
   color: #fff;
   font-size: 17.5px;
   background-color: #9370DB;
+
 `;
 
 export const NameTd = styled.td`
@@ -34,6 +43,10 @@ export const NameTd = styled.td`
   width: 30%;
   font-weight: 600;
   color: #4B0082;
+
+  @media(max-width: 800px) {
+    width: 50%;
+  }
 `;
 
 export const ParticipationTd = styled.td`
@@ -42,4 +55,8 @@ export const ParticipationTd = styled.td`
   padding: 10px;
   width: 30%;
   font-weight: 500;
+
+  @media(max-width: 800px) {
+    width: 50%;
+  }
 `;

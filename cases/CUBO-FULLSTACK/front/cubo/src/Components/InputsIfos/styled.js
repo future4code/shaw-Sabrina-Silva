@@ -7,6 +7,9 @@ border-left: none;
 border-right:none;
 border-top: none;
 border: 1px solid #663399;
+@media(max-width: 800px) {
+    height:auto;
+  }
 `
 
 export const Form = styled.form`
@@ -15,6 +18,9 @@ flex-direction: row;
 justify-content: space-evenly;
 align-items: center;
 padding: 1.5rem;
+@media(max-width: 800px) {
+    flex-direction: column;
+  }
 `
 
 export const Input = styled.input`
@@ -25,6 +31,10 @@ border-radius: 0.5rem;
 padding: 1px;
 font-size: 1rem;
 font-weight: 500;
+@media(max-width: 800px) {
+    width: 70%;
+    margin-bottom: 1rem;
+  }
 `
 
 export const SendButton = styled.button`
@@ -40,4 +50,8 @@ cursor: pointer;
 :hover{
     background-color:#9370DB;
 }
+
+@media(max-width: 800px) {
+    width: 50%;
+  }
 `

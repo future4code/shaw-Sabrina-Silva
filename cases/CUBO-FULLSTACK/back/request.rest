@@ -1,0 +1,12 @@
+POST https://cubo-case-fullstack.herokuapp.com/user/create
+Content-Type: application/json
+
+{
+    "first_name": "Miguel",
+    "second_name": "Silva",
+    "participation": 19
+}
+
+###
+
+GET https://cubo-case-fullstack.herokuapp.com/user/get-users
